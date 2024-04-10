@@ -181,3 +181,6 @@ artifacts/
 
 # NServiceBus Learning Transport
 /.learningtransport/
+
+# Local secrets file
+appsettings.local.json
