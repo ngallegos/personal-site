@@ -2,6 +2,8 @@ using Contentful.CodeFirst;
 using Contentful.Core;
 using Contentful.Core.Models;
 using Contentful.Core.Search;
+using Markdig;
+using Microsoft.AspNetCore.Html;
 
 namespace PersonalSite.ContentModel;
 
@@ -21,4 +23,11 @@ public static  class Extensions
         var attr = type.GetCustomAttributes(typeof(ContentTypeAttribute), false).FirstOrDefault() as ContentTypeAttribute;
         return attr?.Id;
     }
+    
+    public static HtmlString ToHtmlString(this string markdown)
+    {
+        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        var html = Markdown.ToHtml(markdown, pipeline);
+        return new HtmlString(html);
+    } 
 }

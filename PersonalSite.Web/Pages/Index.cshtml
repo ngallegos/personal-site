@@ -1,10 +1,17 @@
 ﻿@page
+@using PersonalSite.ContentModel
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (Model.HomePage.FeaturedImage != null)
+    {
+        var image = Model.HomePage.FeaturedImage;
+        <img src="@image.File.Url" alt="@image.Description"/>
+    }
+    <div>
+        @Model.HomePage.HtmlContent
+    </div>
 </div>
