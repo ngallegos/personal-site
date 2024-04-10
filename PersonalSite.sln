@@ -10,7 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{29942F
 		.gitignore = .gitignore
 		global.json = global.json
 		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.Utilities", "PersonalSite.Utilities\PersonalSite.Utilities.csproj", "{99C986FD-0B19-4C73-B199-AE8E408B4955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,5 +29,9 @@ Global
 		{707154A0-F491-47D6-868D-755DFF4B2B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{707154A0-F491-47D6-868D-755DFF4B2B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{707154A0-F491-47D6-868D-755DFF4B2B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
