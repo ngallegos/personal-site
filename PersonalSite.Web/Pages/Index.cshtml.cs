@@ -13,7 +13,7 @@ public class IndexModel : PageModel
     private readonly IContentfulClient _contentful;
     
     [BindProperty]
-    public CT.Page HomePage { get; set; }
+    public CT.Page? HomePage { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger, IContentfulClient contentful)
     {

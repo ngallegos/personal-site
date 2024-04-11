@@ -56,3 +56,6 @@ error*.xml
 
 # Local secrets file
 appsettings.local.json
+
+# NPM
+node_modules/

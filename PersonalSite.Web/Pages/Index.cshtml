@@ -6,12 +6,12 @@
 }
 
 <div class="text-center">
-    @if (Model.HomePage.FeaturedImage != null)
+    @if (Model.HomePage?.FeaturedImage != null)
     {
         var image = Model.HomePage.FeaturedImage;
         <img src="@image.File.Url" alt="@image.Description"/>
     }
     <div>
-        @Model.HomePage.HtmlContent
+        @Model.HomePage?.HtmlContent
     </div>
 </div>

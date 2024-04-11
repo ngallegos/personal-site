@@ -1,0 +1,17 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": ".NET Core web application using Contentful to set up a personal website",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwind build -i ./styles/site.css -o ./wwwroot/css/site.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
