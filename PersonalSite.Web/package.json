@@ -4,7 +4,7 @@
   "description": ".NET Core web application using Contentful to set up a personal website",
   "main": "index.js",
   "scripts": {
-    "css:build": "npx tailwind build -i ./styles/site.css -o ./wwwroot/css/site.css"
+    "css:build": "npx tailwind build -i ./styles/site.css -o ./wwwroot/css/site.css; npx tailwind build -i ./styles/resume.css -o ./wwwroot/css/resume.css"
   },
   "keywords": [],
   "author": "",
