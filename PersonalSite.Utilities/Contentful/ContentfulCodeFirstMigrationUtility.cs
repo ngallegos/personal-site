@@ -43,6 +43,8 @@ public class ContentfulCodeFirstMigrationUtility
             // These are in order of dependency.  If you add a new content type, make sure it's at the end of the list.
             var contentTypes = new[]
             {
+                typeof(CT.ResumeSection),
+                typeof(CT.Resume),
                 typeof(CT.Page)
             };
             var contentTypesSynchronized = 0;
