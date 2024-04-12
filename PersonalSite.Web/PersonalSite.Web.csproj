@@ -21,15 +21,15 @@
       <ProjectReference Include="..\PersonalSite.ContentModel\PersonalSite.ContentModel.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <UpToDateCheckBuilt Include="styles/site.css" Set="Css" />
-        <UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
-        <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+<!--    <ItemGroup>-->
+<!--        <UpToDateCheckBuilt Include="styles/site.css" Set="Css" />-->
+<!--        <UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />-->
+<!--        <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />-->
 
-    </ItemGroup>
+<!--    </ItemGroup>-->
 
-    <Target Name="Tailwind" BeforeTargets="Build">
-        <Exec Command="npm run css:build"/>
-    </Target>
+<!--    <Target Name="Tailwind" BeforeTargets="Build">-->
+<!--        <Exec Command="npm run css:build"/>-->
+<!--    </Target>-->
     
 </Project>
