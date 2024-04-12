@@ -3,7 +3,7 @@
     <!-- To keep in the same column -->
     <section class="break-inside-avoid">
         <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
-            SKILLS / TOOLS
+            SKILLS
         </h2>
         <section class="mb-0 break-inside-avoid">
             <section class="mt-1 last:pb-1">
@@ -17,5 +17,43 @@
                 </ul>
             </section>
         </section>
+        @if (Model.Tools.Any())
+        { 
+            <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
+                TOOLS
+            </h2>
+            <section class="mb-0 break-inside-avoid">
+                <section class="mt-1 last:pb-1">
+                    <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                        @foreach (var tool in Model.Tools)
+                        {
+                            <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">
+                                @tool
+                            </li>
+                        }
+                    </ul>
+                </section>
+            </section>
+        }
+        @if (Model.Concepts.Any())
+        { 
+            <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
+                CONCEPTS
+            </h2>
+            <section class="mb-0 break-inside-avoid">
+                <section class="mt-1 last:pb-1">
+                    <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                        @foreach (var concept in Model.Concepts)
+                        {
+                            <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">
+                                @concept
+                            </li>
+                        }
+                    </ul>
+                </section>
+            </section>
+        }
+        
+        
     </section>
 </section>

@@ -28,6 +28,14 @@ public class Resume
     [FieldAppearance(SystemWidgetIds.TagEditor)]
     public List<string> Skills { get; set; } = new List<string>();
     
+    [ContentField(Type = SystemFieldTypes.Array, Id = "tools", Name = "Tools")]
+    [FieldAppearance(SystemWidgetIds.TagEditor)]
+    public List<string> Tools { get; set; } = new List<string>();
+    
+    [ContentField(Type = SystemFieldTypes.Array, Id = "concepts", Name = "Concepts")]
+    [FieldAppearance(SystemWidgetIds.TagEditor)]
+    public List<string> Concepts { get; set; } = new List<string>();
+    
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "location", Name = "Location")]
     [FieldAppearance(SystemWidgetIds.SingleLine)]
     public string? Location { get; set; }
