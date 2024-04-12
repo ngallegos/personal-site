@@ -73,3 +73,17 @@ body .icon-parent::before {
 i:hover {
     color: #3c3c3c !important;
 }
+
+@layer components {
+    .education ul {
+        @apply mt-2 list-disc list-inside text-gray-800 text-md;
+    }
+    
+    .summary p {
+        @apply mt-2 leading-normal text-gray-700 text-md;
+    }
+    
+    .experience ul {
+        @apply pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish;
+    }
+}

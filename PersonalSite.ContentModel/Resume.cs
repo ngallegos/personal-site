@@ -59,4 +59,29 @@ public class Resume
     [ContentField(Type = SystemFieldTypes.Array, Id = "sections", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
     public List<ResumeSection> Sections { get; set; } = new List<ResumeSection>();
+    
+    [IgnoreContentField]
+    public char[] Initials => Name?.Split(' ').Select(x => x.ToUpper()[0]).ToArray() ?? Array.Empty<char>();
+    
+    [IgnoreContentField]
+    public string CleanWebsite => Website?.Replace("https://", "", StringComparison.InvariantCultureIgnoreCase)
+        .Replace("http://", "", StringComparison.InvariantCultureIgnoreCase)
+        .Replace("www.", "", StringComparison.InvariantCultureIgnoreCase) ?? "";
+
+    [IgnoreContentField]
+    public string GitHubUsername => GitHub?.Replace("https://", "", StringComparison.InvariantCultureIgnoreCase)
+        .Replace("github.com/", "", StringComparison.InvariantCultureIgnoreCase) ?? "";
+    
+    [IgnoreContentField]
+    public List<ResumeSection> Experience => Sections.Where(s => s.Category?.ToLower() == "experience")
+        .OrderByDescending(x => x.SubHeading).ToList();
+    
+    
+    [IgnoreContentField]
+    public List<ResumeSection> Education => Sections.Where(s => s.Category?.ToLower() == "education")
+        .OrderByDescending(x => x.SubHeading).ToList();
+    
+    
+    [IgnoreContentField]
+    public List<ResumeSection> Summary => Sections.Where(s => s.Category?.ToLower() == "summary").ToList();
 }
