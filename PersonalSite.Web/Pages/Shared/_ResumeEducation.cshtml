@@ -1,0 +1,31 @@
+﻿@model PersonalSite.ContentModel.Resume
+@if (Model.Education.Any())
+{
+  <!--Education -------------------------------------------------------------------------------------------------------->
+  <section class="education pb-0 mt-2 border-b-4 border-gray-300 first:mt-0 break-inside-avoid">
+      <!-- To keep in the same column -->
+      <section class="break-inside-avoid">
+          <h2
+              class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
+              EDUCATION
+          </h2>
+          @foreach (var (edu, ix) in Model.Education.Select((s, i) => (s, i)))
+          {
+              var first = ix == 0;
+              var last = ix == Model.Education.Count - 1;
+              <section class="@(first ? "mt-2" : "mt-4") @(last ? "pb-4 mb-4" : "border-b-2") break-inside-avoid">
+                  <header>
+                      <h3
+                          class="text-lg font-semibold text-gray-700 leading-snugish">
+                          @edu.Heading
+                      </h3>
+                      <p class="leading-normal text-gray-500 text-md">
+                          @edu.SubHeading
+                      </p>
+                  </header>
+                  @edu.HtmlContent
+              </section>
+          }
+      </section>
+  </section>
+}

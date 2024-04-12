@@ -1,0 +1,21 @@
+﻿@model PersonalSite.ContentModel.Resume
+<section class="skills pb-6 mt-0 mb-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid">
+    <!-- To keep in the same column -->
+    <section class="break-inside-avoid">
+        <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
+            SKILLS / TOOLS
+        </h2>
+        <section class="mb-0 break-inside-avoid">
+            <section class="mt-1 last:pb-1">
+                <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">
+                            @skill
+                        </li>
+                    }
+                </ul>
+            </section>
+        </section>
+    </section>
+</section>
