@@ -8,6 +8,8 @@
 You will need a [Contentful](https://www.contentful.com/) account (free or paid) 
 and have configured api/management keys.
 
+The utility project will first need to be run to create the required content types in Contentful.
+
 To run the web project or the utility project you will need to create an `appsettings.local.json` 
 file in the root of the project with the following structure:
 
