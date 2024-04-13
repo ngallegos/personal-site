@@ -1,6 +1,18 @@
 using Contentful.AspNetCore;
+using PersonalSite.Web.Config;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// No need to use AWS Secrets Manager locally if we've configured the appsettings.local.json file
+// with Contentful secrets
+if (string.IsNullOrEmpty(builder.Configuration["ContenfulOptions:DeliveryApiKey"]))
+{
+    builder.Host.ConfigureAppConfiguration((ctx, configurationBuilder) =>
+    {
+        configurationBuilder.AddAmazonSecretsManager(ctx.Configuration["AWS:Region"],
+            ctx.Configuration["AWS:SecretNames:Contentful"]);
+    });
+}
 
 // Add services to the container.
 builder.Services.AddRazorPages();

@@ -25,6 +25,22 @@ file in the root of the project with the following structure:
 }
 ```
 
+### Secrets Manager
+The app is configured to use AWS Secrets Manager to retrieve these values in production.
+If you want to test your setup locally, you will need to configure a secret in AWS Secrets Manager 
+and configure either your environment variables or an aws cli profile named `personal-site` with
+your credentials. Because of the way the secret is retrieved, the json config in AWS should 
+be in the format: 
+```json
+{
+    "ContentfulOptions:DeliveryApiKey": "YOUR_DELIVERY_API_KEY",
+    "ContentfulOptions:PreviewApiKey": "YOUR_PREVIEW_API_KEY",
+    "ContentfulOptions:Environment": "environment-you-want-to-use",
+    "ContentfulOptions:ManagementApiKey": "YOUR_MANAGEMENT_API_KEY",
+    "ContentfulOptions:SpaceId": "YOUR_SPACE_ID"
+}
+```
+
 ## Shout Outs
 
 The resume is heavily influenced by [this excellent template](https://github.com/Thomashighbaugh/resume) 

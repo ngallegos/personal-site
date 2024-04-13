@@ -28,6 +28,10 @@
 
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AWSSDK.SecretsManager" Version="3.7.302.49" />
+    </ItemGroup>
+
     <Target Name="Tailwind" BeforeTargets="Build">
         <Exec Command="npm run css:build"/>
     </Target>
