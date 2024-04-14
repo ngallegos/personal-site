@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // No need to use AWS Secrets Manager locally if we've configured the appsettings.local.json file
 // with Contentful secrets
-if (string.IsNullOrEmpty(builder.Configuration["ContenfulOptions:DeliveryApiKey"]))
+var env = builder.Environment.EnvironmentName;
+if (string.IsNullOrEmpty(builder.Configuration["ContentfulOptions:DeliveryApiKey"]))
 {
     builder.Host.ConfigureAppConfiguration((ctx, configurationBuilder) =>
     {
