@@ -1,17 +1,20 @@
 {
     "configurations": [
         {
-            "name": "local utilities",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/PersonalSite.Utilities/PersonalSite.Utilities.csproj"
-        },
-        {
             "name": "local web",
             "type": "dotnet",
             "request": "launch",
             "projectPath": "${workspaceFolder}/PersonalSite.Web/PersonalSite.Web.csproj",
             "launchConfigurationId": "TargetFramework=;local",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "local"
+            } 
+        },
+        {
+            "name": "local utilities",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/PersonalSite.Utilities/PersonalSite.Utilities.csproj",
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "local"
             } 
