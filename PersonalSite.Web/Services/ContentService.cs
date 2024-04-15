@@ -40,7 +40,8 @@ public class ContentService : IContentService
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(_cacheDurationSeconds);
             var query = QueryBuilder<Resume>.New.FieldEquals(x => x.Active, "true");
-            return (await _contentful.GetEntriesByType<Resume>(query)).Single();
+            return (await _contentful.GetEntriesByType<Resume>(query))
+                .OrderByDescending(x => x.Sys?.UpdatedAt ?? x.Sys?.CreatedAt ).Single();
         });
     }
 }
