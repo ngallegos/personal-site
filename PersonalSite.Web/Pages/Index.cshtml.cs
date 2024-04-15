@@ -1,29 +1,23 @@
-﻿using Contentful.Core;
-using Contentful.Core.Search;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PersonalSite.ContentModel;
 using CT = PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
-    private readonly IContentfulClient _contentful;
+    private readonly IContentService _contentService;
     
     [BindProperty]
     public CT.Page? HomePage { get; set; }
 
-    public IndexModel(ILogger<IndexModel> logger, IContentfulClient contentful)
+    public IndexModel(IContentService contentService)
     {
-        _logger = logger;
-        _contentful = contentful;
+        _contentService = contentService;
     }
 
     public async Task OnGetAsync()
     {
-        var query = QueryBuilder<CT.Page>.New.FieldEquals(x => x.Slug, "/home");
-        HomePage = (await _contentful.GetEntriesByType<CT.Page>(query)).Single();
+        HomePage = await _contentService.GetPageAsync("/home");
     }
 }

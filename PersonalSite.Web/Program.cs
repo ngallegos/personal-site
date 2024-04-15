@@ -15,6 +15,9 @@ if (string.IsNullOrEmpty(builder.Configuration["ContentfulOptions:DeliveryApiKey
     });
 }
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddScoped<IContentService, ContentService>();
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
