@@ -20,6 +20,7 @@ builder.Services.AddScoped<IContentService, ContentService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddContentful(builder.Configuration);
 
@@ -44,5 +45,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapHealthChecks("/health");
 
 app.Run();
