@@ -45,6 +45,11 @@
           <section class="block">
             <h1 class="mb-0 text-5xl font-bold text-gray-700">
               @resume.Name
+              <a class="print:hidden" href="" onclick="window.print();return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 inline-block mb-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
+                </svg>
+              </a>
             </h1>
             <!--Job Title--------------------------------------------------------------------------------------------------------->
             <h2
@@ -62,12 +67,12 @@
           </section>
           <!--   Initials Block         -->
           <section
-              class="justify-between px-3 mt-0 mb-5 text-4xl font-black leading-none text-white bg-gray-700 initials-container print:bg-black"
-              style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
-              @foreach(var init in resume.Initials)
-              {
-                  <section class="text-center initial">@init</section>
-              }
+            class="justify-between px-3 mt-0 mb-5 text-4xl font-black leading-none text-white bg-gray-700 initials-container print:bg-black"
+            style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
+            @foreach (var init in resume.Initials)
+            {
+              <section class="text-center initial">@init</section>
+            }
           </section>
         </header>
         <!-- Column -------------------------------------------------------------------------------------------------->

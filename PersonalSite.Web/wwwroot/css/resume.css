@@ -914,6 +914,14 @@ body{
   display: inline-flex;
 }
 
+.h-7{
+  height: 1.75rem;
+}
+
+.w-7{
+  width: 1.75rem;
+}
+
 .w-full{
   width: 100%;
 }
@@ -1311,6 +1319,10 @@ i:hover {
   .print\:mx-0{
     margin-left: 0px;
     margin-right: 0px;
+  }
+
+  .print\:hidden{
+    display: none;
   }
 
   .print\:h-letter-col-full{
