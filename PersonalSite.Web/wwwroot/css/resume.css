@@ -743,40 +743,6 @@ body{
   --tw-contain-style:  ;
 }
 
-.container{
-  width: 100%;
-}
-
-@media (min-width: 500px){
-  .container{
-    max-width: 500px;
-  }
-}
-
-@media (min-width: 640px){
-  .container{
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 833px){
-  .container{
-    max-width: 833px;
-  }
-}
-
-@media (min-width: 1079.5px){
-  .container{
-    max-width: 1079.5px;
-  }
-}
-
-@media (min-width: 1280px){
-  .container{
-    max-width: 1280px;
-  }
-}
-
 .education ul{
   margin-top: 0.5rem;
   list-style-position: inside;
@@ -802,10 +768,6 @@ body{
   line-height: 1.35;
   --tw-text-opacity: 1;
   color: rgb(58 58 58 / var(--tw-text-opacity));
-}
-
-.collapse{
-  visibility: collapse;
 }
 
 .m-0{
@@ -844,10 +806,6 @@ body{
 
 .mb-2{
   margin-bottom: 0.5rem;
-}
-
-.mb-3{
-  margin-bottom: 0.75rem;
 }
 
 .mb-4{
@@ -1005,11 +963,6 @@ body{
   background-color: rgb(43 43 43 / var(--tw-bg-opacity));
 }
 
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 253 253 / var(--tw-bg-opacity));
-}
-
 .p-1{
   padding: 0.25rem;
 }
@@ -1033,10 +986,6 @@ body{
 
 .pb-2{
   padding-bottom: 0.5rem;
-}
-
-.pb-3{
-  padding-bottom: 0.75rem;
 }
 
 .pb-4{

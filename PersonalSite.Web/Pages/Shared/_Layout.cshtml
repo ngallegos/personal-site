@@ -14,70 +14,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-
-    <style>
-        .quicksand {
-            font-family: 'Nunito', sans-serif;
-        }
-        
-        ::selection {
-            background: #E9D8FD;
-	    color:#202684;
-
-            /* WebKit/Blink Browsers */
-        }
-        
-        ::-moz-selection {
-            background: #E9D8FD;
-	    color:#202684;
-            /* Gecko Browsers */
-        }
-        
-        a:not(.nav) {
-            font-weight: bold;
-            text-decoration: none;
-            padding: 2px;
-            background: linear-gradient(to right, #5A67D8, #5A67D8);
-            background-repeat: repeat-x;
-            background-size: 100% 2px;
-            background-position: 0 95%;
-            -webkit-transition: all 150ms ease-in-out;
-            -moz-transition: all 150ms ease-in-out;
-            -ms-transition: all 150ms ease-in-out;
-            -o-transition: all 150ms ease-in-out;
-            transition: all 150ms ease-in-out;
-        }
-        
-        a:hover {
-            color: #B794F4;
-            font-weight: bold;
-            text-decoration: none;
-            padding-bottom: 2px;
-            background: linear-gradient(to right, #9F7AEA, #E9D8FD);
-            background-repeat: repeat-x;
-            background-size: 100% 2px;
-            background-position: 50% 95%;
-            -webkit-transition: color 150ms ease-in-out;
-            -moz-transition: color 150ms ease-in-out;
-            -ms-transition: color 150ms ease-in-out;
-            -o-transition: color 150ms ease-in-out;
-            transition: color 150ms ease-in-out;
-        }
-        
-        a:focus {
-            outline: none;
-            background: #E9D8FD;
-        }
-    </style>
-
 </head>
 
 <body class="bg-gray-100 text-gray-700 font-sans quicksand">
 
     <div class="p-6 sm:p-10 md:p-16 flex flex-wrap">
 
-        <div class="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
-            <div class="max-w-md md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
+        <div class="w-full md:w-1/3 md:pr-32 order-3 md:order-1">
+            <div class="max-w-2xl md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
                 <p class="font-bold my-4 md:my-12">Previous Posts</p>
 
                 <ul class="flex flex-wrap justify-between flex-col">
@@ -89,8 +33,8 @@
                 <a href="#" class="normal font-bold hover:font-bold">more...</a>
             </div>
         </div>
-        <div class="w-full md:w-1/2 order-1 md:order-2">
-            <div class="max-w-md leading-loose tracking-tight">
+        <div class="w-full md:w-2/3 order-1 md:order-2">
+            <div class="max-w-2xl leading-loose tracking-tight">
                 
                 @RenderBody()
                 <h1 class="font-bold my-12">Post Title</h1>
@@ -108,8 +52,8 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/2 md:pr-32 pt-12 md:pt-0 md:sticky md:bottom-0 order-4 md:order-3">
-            <div class="max-w-md md:float-right md:text-right leading-loose tracking-tight md:mb-16">
+        <div class="w-full md:w-1/3 md:pr-32 pt-12 md:pt-0 md:sticky md:bottom-0 order-4 md:order-3">
+            <div class="max-w-2xl md:float-right md:text-right leading-loose tracking-tight md:mb-16">
                 <p class="font-bold my-4 md:my-12">Contact Me</p>
 
                 <ul class="flex flex-wrap justify-between flex-row md:flex-col">
@@ -120,8 +64,8 @@
                 </ul>
             </div>
         </div>
-        <div class="w-full md:w-1/2 order-2 md:order-4">
-            <div class="max-w-md leading-loose tracking-tight">
+        <div class="w-full md:w-2/3 order-2 md:order-4">
+            <div class="max-w-2xl leading-loose tracking-tight">
                 <p class="font-bold my-4 md:my-12">About Me</p>
 
                 <p class="mb-8">Arcu risus quis varius quam quisque id diam vel. Consectetur adipiscing elit ut aliquam purus sit amet. Nibh tortor id aliquet lectus proin nibh. </p>
