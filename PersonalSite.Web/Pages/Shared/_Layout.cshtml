@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 text-gray-700 font-sans quicksand">
+<body class="dark-theme font-sans quicksand">
 
     <div class="p-6 sm:p-10 md:p-16 flex flex-wrap">
 
@@ -76,7 +76,7 @@
 
     <!-- Pin to top right corner -->
     <div class="absolute top-0 right-0 h-12 w-18 p-4">
-        <button class="js-change-theme focus:outline-none">🌙</button>
+        <button class="js-change-theme focus:outline-none">☀️</button>
     </div>
 
 
@@ -91,18 +91,14 @@
         //const profile = document.getElementById('profile');
 
         toggle.addEventListener('click', () => {
-            if (body.classList.contains('text-gray-700')) {
+            if (body.classList.contains('light-theme')) {
                 toggle.innerHTML = "☀️";
-                body.classList.remove('text-gray-700');
-                body.classList.add('text-gray-300');
-                body.classList.remove('bg-gray-100');
-                body.classList.add('bg-gray-900');
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
             } else {
                 toggle.innerHTML = "🌙";
-                body.classList.remove('text-gray-300');
-                body.classList.add('text-gray-700');
-                body.classList.remove('bg-gray-900');
-                body.classList.add('bg-gray-100');
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
 
             }
         });

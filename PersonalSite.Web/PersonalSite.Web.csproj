@@ -23,8 +23,10 @@
 
     <!-- <ItemGroup>
         <UpToDateCheckBuilt Include="styles/site.css" Set="Css" />
+        <UpToDateCheckBuilt Include="styles/resume.css" Set="Css" />
         <UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
-        <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+        <UpToDateCheckBuilt Include="styles/tailwind.config.js" Set="Css" />
+        <UpToDateCheckBuilt Include="styles/resume.config.js" Set="Css" />
 
     </ItemGroup>
 
