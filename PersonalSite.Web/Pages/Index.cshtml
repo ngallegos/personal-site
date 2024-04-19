@@ -5,15 +5,13 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
+<div>
     
-    <a class="nav-link text-dark" asp-area="" asp-page="/Resume">Resume</a>
     @* @if (Model.HomePage?.FeaturedImage != null) *@
     @* { *@
     @*     var image = Model.HomePage.FeaturedImage; *@
     @*     <img src="@image.File.Url" alt="@image.Description"/> *@
     @* } *@
-    <div>
-        @Model.HomePage?.HtmlContent
-    </div>
+    @Model.HomePage?.HtmlContent
+    
 </div>
