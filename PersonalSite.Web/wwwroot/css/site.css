@@ -596,14 +596,37 @@ video {
   border-radius: 9999px;
 }
 
+.content ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  list-style-position: inside;
+  list-style-type: disc;
+}
+
+.content ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
 code.hljs {
   position: relative;
   label {
     position: absolute;
-    color: lightgray;
-    right: 4px;
-    top: 4px;
-    font-size: 11px;
+  }
+  label {
+    right: 0.125rem;
+  }
+  label {
+    top: 0.125rem;
+  }
+  label {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  label {
+    accent-color: #9ca3af;
   }
 }
 
