@@ -87,4 +87,15 @@ a:focus {
     @apply border-b-2 border-gray-200 my-8;
     border-radius: 9999px;
   }
+  
+  code.hljs {
+    position: relative;
+    label {
+      position: absolute;
+      color: lightgray;
+      right: 4px;
+      top: 4px;
+      font-size: 11px;
+    }
+  }
 }

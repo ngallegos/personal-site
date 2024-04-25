@@ -91,7 +91,14 @@
 
             }
         });
-        hljs.highlightAll();
+        hljs.initHighlightingOnLoad();
+        addEventListener('load', function() {
+          let blocks = document.querySelectorAll('pre code.hljs');
+          Array.prototype.forEach.call(blocks, function(block) {
+            let language = block.result.language;
+            block.insertAdjacentHTML("afterbegin",`<label>${language}</label>`)
+          });
+        })
     </script>
 
 </body>

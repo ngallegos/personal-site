@@ -596,6 +596,17 @@ video {
   border-radius: 9999px;
 }
 
+code.hljs {
+  position: relative;
+  label {
+    position: absolute;
+    color: lightgray;
+    right: 4px;
+    top: 4px;
+    font-size: 11px;
+  }
+}
+
 .absolute {
   position: absolute;
 }
