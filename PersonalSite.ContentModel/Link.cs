@@ -5,7 +5,7 @@ using Contentful.Core.Models.Management;
 namespace PersonalSite.ContentModel;
 
 [ContentType(Description = "Link", Name = "Link", 
-    DisplayField = "name", Id = "personalSiteLink")]
+    DisplayField = "slug", Id = "personalSiteLink")]
 public class Link
 {
     [IgnoreContentField]
@@ -13,10 +13,10 @@ public class Link
         
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "slug", Required = true, Name = "Url Slug")]
     [FieldAppearance(SystemWidgetIds.SlugEditor)]
+    [Unique]
     public string? Slug { get; set; }
     
-    [ContentField(Type = SystemFieldTypes.Symbol, Id = "name", Required = true, Name = "Url Slug")]
+    [ContentField(Type = SystemFieldTypes.Symbol, Id = "text", Required = true, Name = "Text")]
     [FieldAppearance(SystemWidgetIds.SingleLine)]
-    [Unique]
-    public string? Name { get; set; }
+    public string? Text { get; set; }
 }

@@ -1,0 +1,11 @@
+@model List<PersonalSite.ContentModel.Link>
+
+@if (Model?.Any() ?? false)
+{
+    <ul class="flex flex-wrap justify-between flex-col">
+        @foreach(var link in Model)
+        {
+            <li><a href="@link.Slug" class="nav">@link.Text</a></li>
+        }
+    </ul>
+}

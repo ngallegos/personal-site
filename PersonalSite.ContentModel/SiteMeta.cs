@@ -5,15 +5,20 @@ using Contentful.Core.Models.Management;
 namespace PersonalSite.ContentModel;
 
 [ContentType(Description = "Personal site metadata", Name = "SiteMetaData", 
-    DisplayField = "domain", Id = "personalSiteMetaData")]
+    DisplayField = "siteName", Id = "personalSiteMetaData")]
 public class SiteMetaData
 {
     [IgnoreContentField]
     public SystemProperties? Sys { get; set; }
     
-    [ContentField(Type = SystemFieldTypes.Symbol, Id = "domain", Required = true, Name = "Domain")]
+    [ContentField(Type = SystemFieldTypes.Symbol, Id = "siteName", Required = true, Name = "Site Name")]
     [FieldAppearance(SystemWidgetIds.SingleLine)]
-    public string? Domain { get; set; }
+    [Unique]
+    public string? SiteName { get; set; }
+    
+    [ContentField(Type = SystemFieldTypes.Array, Id = "domains", Required = true, Name = "Domains")]
+    [FieldAppearance(SystemWidgetIds.ListInput, HelpText = "Comma separated list of domains")]
+    public List<string> Domains { get; set; } = new List<string>();
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "navLinks", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
