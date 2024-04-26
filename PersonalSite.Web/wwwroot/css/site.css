@@ -569,8 +569,50 @@ video {
 }
 
 .content h1 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 0px;
+  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+  line-height: 2;
+  font-weight: 700;
+}
+
+.content h2 {
+  margin-top: 0px;
+  margin-bottom: 0.25rem;
+  font-size: 1.875rem;
+  line-height: 2;
+  font-weight: 700;
+}
+
+.content h3 {
+  margin-top: 0px;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2;
+  font-weight: 700;
+}
+
+.content h4 {
+  margin-top: 0px;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  line-height: 2;
+  font-weight: 700;
+}
+
+.content h5 {
+  margin-top: 0px;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 2;
+  font-weight: 700;
+}
+
+.content h6 {
+  margin-top: 0px;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  line-height: 2;
   font-weight: 700;
 }
 
@@ -708,10 +750,6 @@ code.hljs {
 
 .mb-5 {
   margin-bottom: 1.25rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
 }
 
 .ml-2 {
@@ -1097,10 +1135,6 @@ a:focus {
 
 .last\:pb-1:last-child {
   padding-bottom: 0.25rem;
-}
-
-.hover\:font-bold:hover {
-  font-weight: 700;
 }
 
 .hover\:text-gray-700:hover {

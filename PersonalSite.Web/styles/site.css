@@ -71,7 +71,22 @@ a:focus {
   }
   
   .content h1 {
-    @apply font-bold my-12;
+    @apply font-bold mt-0 mb-2 text-4xl/loose;
+  }
+  .content h2 {
+    @apply font-bold mt-0 mb-1 text-3xl/loose;
+  }
+  .content h3 {
+    @apply font-bold mt-0 mb-1 text-2xl/loose;
+  }
+  .content h4 {
+    @apply font-bold mt-0 mb-1 text-xl/loose;
+  }
+  .content h5 {
+    @apply font-bold mt-0 mb-1 text-lg/loose;
+  }
+  .content h6 {
+    @apply font-bold mt-0 mb-1 text-base/loose;
   }
   
   .content p {

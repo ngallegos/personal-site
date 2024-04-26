@@ -12,11 +12,15 @@ public class NavLinksViewComponent : ViewComponent
         _contentService = contentService;
     }
     
-    public async Task<IViewComponentResult> InvokeAsync(NavLinksType? linkType = null, string ulClass = "", string liClass = "")
+    public async Task<IViewComponentResult> InvokeAsync(SiteMetaData? siteMeta = null, NavLinksType? linkType = null, string ulClass = "", string liClass = "")
     {
         var model = new NavLinksViewModel { UlClass = ulClass, LiClass = liClass };
-        var domain = Request.Host.Value.Split(':')[0].ToLower();
-        var siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        if (siteMeta == null)
+        {
+            var domain = Request.Host.Value.Split(':')[0].ToLower();
+            siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        }
+
         switch (linkType)
         {
             case NavLinksType.Nav:

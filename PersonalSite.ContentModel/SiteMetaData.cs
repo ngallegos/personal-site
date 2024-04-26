@@ -1,6 +1,7 @@
 using Contentful.CodeFirst;
 using Contentful.Core.Models;
 using Contentful.Core.Models.Management;
+using Microsoft.AspNetCore.Html;
 
 namespace PersonalSite.ContentModel;
 
@@ -31,4 +32,7 @@ public class SiteMetaData
     [ContentField(Type = SystemFieldTypes.Text, Id = "aboutMe", Required = true, Name = "AboutMe")]
     [FieldAppearance(SystemWidgetIds.Markdown)]
     public string? AboutMe { get; set; }
+    
+    [IgnoreContentField]
+    public HtmlString? HtmlAboutMe => AboutMe?.ToHtmlString();
 }
