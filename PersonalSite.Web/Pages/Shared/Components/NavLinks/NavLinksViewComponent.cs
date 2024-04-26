@@ -12,10 +12,36 @@ public class NavLinksViewComponent : ViewComponent
         _contentService = contentService;
     }
     
-    public async Task<IViewComponentResult> InvokeAsync()
+    public async Task<IViewComponentResult> InvokeAsync(NavLinksType? linkType = null, string ulClass = "", string liClass = "")
     {
+        var model = new NavLinksViewModel { UlClass = ulClass, LiClass = liClass };
         var domain = Request.Host.Value.Split(':')[0].ToLower();
         var siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
-        return View(siteMeta.NavLinks);
+        switch (linkType)
+        {
+            case NavLinksType.Nav:
+                model.Links = siteMeta.NavLinks;
+                break;
+            case NavLinksType.Footer:
+                model.Links = siteMeta.ContactLinks;
+                break;
+            default:
+                model.Links = siteMeta.NavLinks.Concat(siteMeta.ContactLinks).ToList();
+                break;
+        }
+        return View(model);
     }
+}
+
+public enum NavLinksType
+{
+    Nav,
+    Footer
+}
+
+public class NavLinksViewModel
+{
+    public string UlClass { get; set; }
+    public string LiClass { get; set; }
+    public List<Link> Links { get; set; } = new List<Link>();
 }

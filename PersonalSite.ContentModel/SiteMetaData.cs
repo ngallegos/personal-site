@@ -27,4 +27,8 @@ public class SiteMetaData
     [ContentField(Type = SystemFieldTypes.Array, Id = "contactLinks", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
     public List<Link> ContactLinks { get; set; } = new List<Link>();
+    
+    [ContentField(Type = SystemFieldTypes.Text, Id = "aboutMe", Required = true, Name = "AboutMe")]
+    [FieldAppearance(SystemWidgetIds.Markdown)]
+    public string? AboutMe { get; set; }
 }
