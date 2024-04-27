@@ -5,7 +5,14 @@
     <ul class="@Model.UlClass">
         @foreach(var link in Model.Links)
         {
-            <li><a href="@link.Slug" class="@Model.LiClass">@link.Text</a></li>
+            if (link.External ?? false)
+            {
+                <li><a href="@link.Slug" class="@Model.LiClass" target="_blank">@link.Text</a></li>
+            }
+            else
+            {
+                <li><a href="@link.Slug" class="@Model.LiClass">@link.Text</a></li>
+            }
         }
     </ul>
 }

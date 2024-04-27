@@ -19,4 +19,8 @@ public class Link
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "text", Required = true, Name = "Text")]
     [FieldAppearance(SystemWidgetIds.SingleLine)]
     public string? Text { get; set; }
+    
+    [ContentField(Type = SystemFieldTypes.Boolean, Id = "external", Name = "External Link")]
+    [BooleanAppearance("Yes", "No", "Should the link open in a new tab?")]
+    public bool? External { get; set; }
 }
