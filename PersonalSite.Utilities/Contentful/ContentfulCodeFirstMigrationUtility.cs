@@ -45,7 +45,9 @@ public class ContentfulCodeFirstMigrationUtility
             {
                 typeof(CT.ResumeSection),
                 typeof(CT.Resume),
-                typeof(CT.Page)
+                typeof(CT.Page),
+                typeof(CT.Link),
+                typeof(CT.SiteMetaData)
             };
             var contentTypesSynchronized = 0;
             foreach (var type in contentTypes)

@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  content: ['./Pages/**/*.cshtml', './Views/**/*.razor'],
+  content: ['./Pages/**/*Resume*.cshtml'],
   theme: {
     /* For Letter size */
     screens: {
