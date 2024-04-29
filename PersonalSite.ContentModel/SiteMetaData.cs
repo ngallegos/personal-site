@@ -18,7 +18,7 @@ public class SiteMetaData
     public string? SiteName { get; set; }
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "domains", Required = true, Name = "Domains")]
-    [FieldAppearance(SystemWidgetIds.ListInput, HelpText = "Comma separated list of domains")]
+    [FieldAppearance(SystemWidgetIds.TagEditor)]
     public List<string> Domains { get; set; } = new List<string>();
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "navLinks", ItemsLinkType = SystemLinkTypes.Entry)]
@@ -28,6 +28,10 @@ public class SiteMetaData
     [ContentField(Type = SystemFieldTypes.Array, Id = "contactLinks", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
     public List<Link> ContactLinks { get; set; } = new List<Link>();
+    
+    [ContentField(Type = SystemFieldTypes.Array, Id = "headMetaData", ItemsLinkType = SystemLinkTypes.Entry)]
+    [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    public List<HeadMeta> HeadMetaData { get; set; } = new List<HeadMeta>();
     
     [ContentField(Type = SystemFieldTypes.Text, Id = "aboutMe", Required = true, Name = "AboutMe")]
     [FieldAppearance(SystemWidgetIds.Markdown)]

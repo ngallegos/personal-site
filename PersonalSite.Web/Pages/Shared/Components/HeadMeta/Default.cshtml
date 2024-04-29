@@ -1,0 +1,12 @@
+@model PersonalSite.ContentModel.SiteMetaData
+
+@{
+    var viewTitle = ViewData["Title"] == null ? "" : ViewData["Title"] + " | ";
+    var title = $"{viewTitle}{Model.SiteName}";
+}
+
+<title>@title</title>
+@foreach(var meta in Model.HeadMetaData)
+{
+    <meta name="@meta.Name" content="@meta.Content">
+}
