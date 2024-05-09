@@ -109,7 +109,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "CraftJack Public Route Table"
+    Name = "${var.vpc_name} Public Route Table"
   }
 }
 
@@ -122,7 +122,7 @@ resource "aws_route_table" "private_a" {
   }
 
   tags = {
-    Name = "CraftJack AZ A Private Route Table"
+    Name = "${var.vpc_name} AZ A Private Route Table"
   }
 }
 
@@ -135,7 +135,7 @@ resource "aws_route_table" "private_b" {
   }
 
   tags = {
-    Name = "CraftJack AZ B Private Route Table"
+    Name = "${var.vpc_name} AZ B Private Route Table"
   }
 }
 
@@ -180,16 +180,6 @@ resource "aws_vpc_endpoint" "s3" {
   }
 }
 
-#create dynamodb endpoint for vpc
-resource "aws_vpc_endpoint" "dynamodb" {
-  vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${var.region}.dynamodb"
-
-  tags = {
-    Name = "VPC Endpoint - DynamoDB"
-  }
-}
-
 #create s3 endpoint private subnet a association
 resource "aws_vpc_endpoint_route_table_association" "s3_a" {
   route_table_id  = aws_route_table.private_a.id
@@ -201,19 +191,6 @@ resource "aws_vpc_endpoint_route_table_association" "s3_b" {
   route_table_id  = aws_route_table.private_b.id
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
 }
-
-#create dynamodb endpoint private subnet a association
-resource "aws_vpc_endpoint_route_table_association" "dynamodb_a" {
-  route_table_id  = aws_route_table.private_a.id
-  vpc_endpoint_id = aws_vpc_endpoint.dynamodb.id
-}
-
-#create dynamodb endpoint private subnet b association
-resource "aws_vpc_endpoint_route_table_association" "dynamodb_b" {
-  route_table_id  = aws_route_table.private_b.id
-  vpc_endpoint_id = aws_vpc_endpoint.dynamodb.id
-}
-
 
 
 
