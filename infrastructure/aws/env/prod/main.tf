@@ -36,6 +36,11 @@ module "vpc" {
   private_subnet_b_cidr = var.private_subnet_b_cidr
 }
 
+module "ecs" {
+  source = "../_modules/ecs"
+  env    = var.env
+}
+
 module "s3" {
     source = "../_modules/s3"
     env    = var.env
