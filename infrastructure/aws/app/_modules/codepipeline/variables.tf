@@ -1,0 +1,11 @@
+variable "account" {}
+variable "region" {}
+variable "app" {}
+variable "env" {}
+variable "vpc_id" {}
+variable "private_a" {}
+variable "private_b" {}
+variable "repo" {}
+variable "github_connection" {}
+variable "build_image_standard" {}
+variable "service_id" {}
