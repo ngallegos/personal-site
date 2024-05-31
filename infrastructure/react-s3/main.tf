@@ -9,6 +9,11 @@ provider "aws" {
   }
 }
 
+module "cert" {
+  source = "./_modules/cert"
+  hosted_zone_id = var.hosted_zone_id
+}
+
 module "s3" {
   source = "./_modules/s3"
   env    = var.env
