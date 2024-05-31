@@ -3,6 +3,7 @@ provider "aws" {
   profile = var.site_name
   default_tags {
     tags = {
+      SiteName    = var.site_name
       Environment = var.env
       CreatedBy   = "terraform"
     }
