@@ -20,3 +20,11 @@ module "s3" {
   env    = var.env
   site_name = var.site_name
 }
+
+module "cloudfront" {
+  source = "./_modules/cloudfront"
+  hosted_zone_id = var.hosted_zone_id
+  main_cert_arn = module.cert.main_cert_arn
+  s3_bucket_website_domain = module.s3.static_site_bucket_domain_name
+  depends_on = [module.s3, module.cert]
+}
