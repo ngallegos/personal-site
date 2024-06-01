@@ -40,7 +40,10 @@ module "s3" {
 module "cloudfront" {
   source = "./_modules/cloudfront"
   hosted_zone_id = var.hosted_zone_id
+  site_name = var.site_name
   main_cert_arn = module.cert.main_cert_arn
+  s3_bucket = module.s3.static_site_bucket
+  s3_bucket_arn = module.s3.static_site_bucket_arn
   s3_bucket_website_domain = module.s3.static_site_bucket_domain_name
   depends_on = [module.s3, module.cert]
 }
