@@ -24,9 +24,12 @@ resource "aws_cloudfront_distribution" "static_site" {
         forward = "none"
       }
     }
-
   }
-
+  custom_error_response {
+    error_code = 403
+    response_code = 200
+    response_page_path = "/index.html"
+  }
 
   viewer_certificate {
     acm_certificate_arn = var.main_cert_arn
