@@ -10,9 +10,25 @@ provider "aws" {
   }
 }
 
+provider "aws" {
+    alias  = "us_east_1"
+    region = "us-east-1"
+    profile = var.site_name
+    default_tags {
+    tags = {
+      SiteName    = var.site_name
+      Environment = var.env
+      CreatedBy   = "terraform"
+    }
+  }
+}
+
 module "cert" {
   source = "./_modules/cert"
   hosted_zone_id = var.hosted_zone_id
+  providers = {
+    aws.us_east_1 = aws.us_east_1
+  }
 }
 
 module "s3" {

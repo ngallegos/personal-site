@@ -7,6 +7,8 @@ resource "aws_acm_certificate" "main" {
   lifecycle {
     create_before_destroy = true
   }
+  
+  provider = aws.us_east_1
 }
 
 #create route53 records for certificate validation
@@ -28,6 +30,7 @@ resource "aws_route53_record" "main_validation" {
 
 #check certificate validation
 resource "aws_acm_certificate_validation" "main" {
+  provider = aws.us_east_1
   certificate_arn         = aws_acm_certificate.main.arn
   validation_record_fqdns = [for record in aws_route53_record.main_validation : record.fqdn]
 }
