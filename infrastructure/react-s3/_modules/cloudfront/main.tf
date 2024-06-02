@@ -7,6 +7,8 @@ resource "aws_cloudfront_distribution" "static_site" {
         origin_id   = var.s3_bucket_website_domain
     }
 
+    aliases = [data.aws_route53_zone.static_site_zone.name]
+
     enabled = true
     default_root_object = "index.html"
 

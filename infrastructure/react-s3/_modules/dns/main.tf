@@ -1,4 +1,4 @@
-#create dns record for application load balancer
+#create dns record for cloudfront distribution
 resource "aws_route53_record" "cloudfront_distribution" {
   provider = aws.us_east_1
   zone_id  = var.hosted_zone_id
