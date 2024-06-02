@@ -47,3 +47,14 @@ module "cloudfront" {
   s3_bucket_website_domain = module.s3.static_site_bucket_domain_name
   depends_on = [module.s3, module.cert]
 }
+
+module "dns" {
+    source = "./_modules/dns"
+    hosted_zone_id = var.hosted_zone_id
+    cloudfront_url = module.cloudfront.static_site_cloudfront_url
+    cloudfront_zone_id = module.cloudfront.static_site_cloudfront_zone_id
+    depends_on = [module.cloudfront]
+    providers = {
+        aws.us_east_1 = aws.us_east_1
+    }
+}
