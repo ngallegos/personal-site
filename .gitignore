@@ -52,7 +52,7 @@ Desktop.ini
 error*.xml
 
 # Rider
-/.idea/
+**/.idea/
 
 # Local secrets file
 appsettings.local.json

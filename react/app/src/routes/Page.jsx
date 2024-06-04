@@ -1,28 +1,23 @@
 import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useLoaderData } from 'react-router-dom';
+import { getPageContent } from '../util/contentUtil';
+import ReactMarkdown from 'react-markdown';
 
 function Page() {
     var params = useParams();
+    var content = useLoaderData();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-            Welcome to {params.slug}!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ReactMarkdown>{content}</ReactMarkdown>
   );
 }
+
+export async function loader({ params}){
+    const content = await getPageContent(params.slug);
+    if (!content) throw new Response("", { status: 404 });
+    return content;
+}
+
 
 export default Page;

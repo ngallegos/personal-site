@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './routes/_layout';
 import ErrorPage from './error-page';
-import Page from './routes/Page';
+import Page, {loader as pageLoader} from './routes/Page';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +16,7 @@ const router = createBrowserRouter([{
   element: <Layout />,
   errorElement: <ErrorPage />,
   children: [
-    { path: "/:slug?", element: <Page /> },
+    { path: "/:slug?", element: <Page />, loader: pageLoader },
   ]
 }]);
 
