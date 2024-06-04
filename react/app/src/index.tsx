@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './routes/_layout';
+import Layout, {loader as layoutLoader } from './routes/_layout';
 import ErrorPage from './error-page';
 import Page, {loader as pageLoader} from './routes/Page';
 
@@ -15,6 +15,7 @@ const router = createBrowserRouter([{
   path: '/',
   element: <Layout />,
   errorElement: <ErrorPage />,
+  loader: layoutLoader,
   children: [
     { path: "/:slug?", element: <Page />, loader: pageLoader },
   ]
