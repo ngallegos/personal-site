@@ -1,4 +1,5 @@
 export interface SiteMetaData {
+    siteName: string;
     navLinks: Link[];
     contactLinks: Link[];
     headMetaData: HeadMeta[];
@@ -12,6 +13,6 @@ export interface Link {
 }
 
 export interface HeadMeta {
-    name: string | null;
-    content: string | null;
+    name: string;
+    content: string;
 }
