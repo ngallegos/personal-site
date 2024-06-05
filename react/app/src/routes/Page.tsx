@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import './site.css';
 import { useParams, useLoaderData } from 'react-router-dom';
 import { getPageContent } from '../util/contentUtil';
 import ReactMarkdown from 'react-markdown';

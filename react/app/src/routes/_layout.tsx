@@ -1,5 +1,4 @@
 import { getSiteMetadata } from '../util/contentUtil';
-import './site.css';
 import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import { SiteMetaData } from '../model/sitemetadata';
 import ReactMarkdown from 'react-markdown';

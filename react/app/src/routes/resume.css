@@ -11,7 +11,7 @@
 
   font-weight: 600;
 
-  src: url("./fonts/Jost-SemiBold.woff2") format("woff2");
+  src: url("../fonts/Jost-SemiBold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -27,7 +27,7 @@
 
   font-weight: 600;
 
-  src: url("./fonts/Jost-SemiBold.woff2") format("woff2");
+  src: url("../fonts/Jost-SemiBold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -44,7 +44,7 @@
 
   font-weight: 600;
 
-  src: url("./fonts/Jost-SemiBold.woff2") format("woff2");
+  src: url("../fonts/Jost-SemiBold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -61,7 +61,7 @@
 
   font-weight: 700;
 
-  src: url("./fonts/Jost-Bold.woff2") format("woff2");
+  src: url("../fonts/Jost-Bold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -77,7 +77,7 @@
 
   font-weight: 700;
 
-  src: url("./fonts/Jost-Bold.woff2") format("woff2");
+  src: url("../fonts/Jost-Bold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -94,7 +94,7 @@
 
   font-weight: 700;
 
-  src: url("./fonts/Jost-Bold.woff2") format("woff2");
+  src: url("../fonts/Jost-Bold.woff2") format("woff2");
 
   font-display: swap;
 
@@ -111,7 +111,7 @@
 
   font-weight: 500;
 
-  src: url("./fonts/Jost-Medium.woff2") format("woff2");
+  src: url("../fonts/Jost-Medium.woff2") format("woff2");
 
   font-display: swap;
 
@@ -127,7 +127,7 @@
 
   font-weight: 500;
 
-  src: url("./fonts/Jost-Medium.woff2") format("woff2");
+  src: url("../fonts/Jost-Medium.woff2") format("woff2");
 
   font-display: swap;
 
@@ -144,7 +144,7 @@
 
   font-weight: 400;
 
-  src: url("./fonts/Jost-Medium.woff2") format("woff2");
+  src: url("../fonts/Jost-Medium.woff2") format("woff2");
 
   font-display: swap;
 
@@ -160,7 +160,7 @@
 
   font-weight: 400;
 
-  src: url("./fonts/Jost-Medium.woff2") format("woff2");
+  src: url("../fonts/Jost-Medium.woff2") format("woff2");
 
   font-display: swap;
 
@@ -177,7 +177,7 @@
 
   font-weight: 400;
 
-  src: url("./fonts/Jost-Medium.woff2") format("woff2");
+  src: url("../fonts/Jost-Medium.woff2") format("woff2");
 
   font-display: swap;
 
@@ -734,6 +734,202 @@ body{
   --tw-contain-style:  ;
 }
 
+.m-0{
+  margin: 0px;
+}
+
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-auto{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.mb-0{
+  margin-bottom: 0px;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
+}
+
+.mt-0{
+  margin-top: 0px;
+}
+
+.mt-2{
+  margin-top: 0.5rem;
+}
+
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.inline-flex{
+  display: inline-flex;
+}
+
+.h-7{
+  height: 1.75rem;
+}
+
+.w-7{
+  width: 1.75rem;
+}
+
+.w-full{
+  width: 100%;
+}
+
+.max-w-3xl{
+  max-width: 48rem;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.items-baseline{
+  align-items: baseline;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.hyphens-manual{
+  -webkit-hyphens: manual;
+          hyphens: manual;
+}
+
+.rounded-2xl{
+  border-radius: 1rem;
+}
+
+.border-4{
+  border-width: 4px;
+}
+
+.border-b-4{
+  border-bottom-width: 4px;
+}
+
+.border-gray-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(160 160 160 / var(--tw-border-opacity));
+}
+
+.border-gray-700{
+  --tw-border-opacity: 1;
+  border-color: rgb(58 58 58 / var(--tw-border-opacity));
+}
+
+.bg-gray-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(231 231 231 / var(--tw-bg-opacity));
+}
+
+.bg-gray-700{
+  --tw-bg-opacity: 1;
+  background-color: rgb(58 58 58 / var(--tw-bg-opacity));
+}
+
+.p-3{
+  padding: 0.75rem;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.align-top{
+  vertical-align: top;
+}
+
+.font-jost{
+  font-family: Jost, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+}
+
+.text-5xl{
+  font-size: 2.65rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+}
+
+.font-black{
+  font-weight: 900;
+}
+
+.font-bold{
+  font-weight: 700;
+}
+
+.font-semibold{
+  font-weight: 600;
+}
+
+.leading-none{
+  line-height: 1;
+}
+
+.leading-snugish{
+  line-height: 1.35;
+}
+
+.text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(89 89 89 / var(--tw-text-opacity));
+}
+
+.text-gray-700{
+  --tw-text-opacity: 1;
+  color: rgb(58 58 58 / var(--tw-text-opacity));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(253 253 253 / var(--tw-text-opacity));
+}
+
+.hyphens-manual{
+  -webkit-hyphens: manual;
+          hyphens: manual;
+}
+
+.col-fill-balance{
+  column-fill: balance;
+}
+
 @media print {
   @page  {
     margin: 0;
@@ -801,4 +997,85 @@ body .icon-parent::before {
 
 i:hover {
   color: #3c3c3c !important;
+}
+
+@media (min-width: 500px){
+  .xsm\:p-8{
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 640px){
+  .sm\:p-9{
+    padding: 2.25rem;
+  }
+}
+
+@media (min-width: 833px){
+  .md\:h-letter{
+    height: 86.9375rem;
+  }
+
+  .md\:h-letter-col-full{
+    height: 77.9375rem;
+  }
+
+  .md\:max-w-letter{
+    max-width: 72rem;
+  }
+
+  .md\:p-16{
+    padding: 4rem;
+  }
+
+  .md\:col-count-2{
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1079.5px){
+  .lg\:mt-6{
+    margin-top: 1.5rem;
+  }
+
+  .lg\:h-letter{
+    height: 86.9375rem;
+  }
+}
+
+@media print{
+  .print\:mx-0{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .print\:hidden{
+    display: none;
+  }
+
+  .print\:h-letter-col-full{
+    height: 77.9375rem;
+  }
+
+  .print\:max-w-letter{
+    max-width: 72rem;
+  }
+
+  .print\:border-0{
+    border-width: 0px;
+  }
+
+  .print\:bg-black{
+    --tw-bg-opacity: 1;
+    background-color: rgb(44 44 44 / var(--tw-bg-opacity));
+  }
+
+  .print\:bg-white{
+    --tw-bg-opacity: 1;
+    background-color: rgb(253 253 253 / var(--tw-bg-opacity));
+  }
+
+  .print\:col-count-2{
+    column-count: 2;
+  }
 }
