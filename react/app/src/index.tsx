@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout, {loader as layoutLoader } from './routes/_layout';
 import ErrorPage from './error-page';
-import Page, {loader as pageLoader} from './routes/Page';
+import Page, {loader as pageLoader} from './routes/page';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -4,16 +4,19 @@ import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import { SiteMetaData } from '../model/sitemetadata';
 import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet';
-import { MetaContext } from '../context/metaContext';
 import rehypeRaw from 'rehype-raw';
+import { MetaContext } from '../context/metaContext';
 
 
 function Layout() {
   const meta = useLoaderData() as SiteMetaData;
+  document.body.classList.add("dark-theme");
+  document.body.classList.add("font-sans");
+  document.body.classList.add("quicksand");
 
   return (
     <MetaContext.Provider value={meta}>
-      <div className="dark-theme font-sans quicksand">
+      <div>
         <Helmet>
           {meta.headMetaData.map((meta, index) => (
             <meta key={index} name={meta.name} content={meta.content} />
@@ -26,7 +29,7 @@ function Layout() {
                   <ul className="flex flex-wrap justify-between flex-col">
                     {meta.navLinks.map((link, index) => (
                       <li key={index}>
-                        {!!link.external ? <a className="nav" href={link.slug} target="_blank">{link.text}</a>
+                        {!!link.external ? <a className="nav" href={link.slug} target="_blank" rel="noreferrer">{link.text}</a>
                         : <Link className="nav" to={link.slug}>{link.text}</Link>}
                       </li>
                     ))}
@@ -44,7 +47,7 @@ function Layout() {
                   <ul className="flex flex-wrap justify-between flex-row md:flex-col">
                     {meta.contactLinks.map((link, index) => (
                       <li key={index}>
-                        {!!link.external ? <a className="nav mx-2 md:mx-0" href={link.slug} target="_blank">{link.text}</a>
+                        {!!link.external ? <a className="nav mx-2 md:mx-0" href={link.slug} target="_blank" rel="noreferrer">{link.text}</a>
                         : <Link className="nav mx-2 md:mx-0" to={link.slug}>{link.text}</Link>}
                       </li>
                     ))}

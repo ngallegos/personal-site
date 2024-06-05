@@ -1,18 +1,23 @@
 import React, { useContext } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
-import { useParams, useLoaderData, LoaderFunction } from 'react-router-dom';
+import { useParams, useLoaderData } from 'react-router-dom';
 import { getPageContent } from '../util/contentUtil';
 import ReactMarkdown from 'react-markdown';
 import { MetaContext } from '../context/metaContext';
 import { Helmet } from 'react-helmet';
 import rehypeRaw from 'rehype-raw';
+import { useEffect } from 'react';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/obsidian.css';
 
 function Page() {
     const meta = useContext(MetaContext);
     var params = useParams();
     const pageTitle = !!params.slug ? params.slug + " | " : "";
     var content = useLoaderData() as string;
+
+  useEffect(() => {
+    hljs.highlightAll();
+  });
   return (
     <>
       <Helmet>
