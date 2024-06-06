@@ -113,6 +113,24 @@ export async function loader({ params } : any) {
         gitHub: "https://www.github.com/test",
         gitHubUsername: "test",
         cleanWebsite: "www.test.com",
+        education: [{
+            category: "education",
+            heading: "University of California, Berkeley",
+            subHeading: "2010-2011",
+            content: "B.S. in Computer Science"
+        }],
+        summary: [{
+            content: "Accomplished senior software engineer"
+        }],
+        experience: [{
+            category: "experience",
+            heading: "Senior Software Engineer",
+            subHeading: "Google",
+            content: "Worked on the Google search engine\n* tested stuff"
+        }],
+        skills: ["C#", "React"],
+        tools: ["VS Code"],
+        concepts: ["TDD"]
     } as ResumeModel
 
     return resume;
