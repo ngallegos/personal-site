@@ -4,7 +4,7 @@ import { getPageContent } from '../util/contentUtil';
 import ReactMarkdown from 'react-markdown';
 import { MetaContext } from '../context/metaContext';
 import { Helmet } from 'react-helmet';
-import './resume.css'
+//import './resume.css'
 import { Resume as ResumeModel } from '../model/resume';
 
 function Resume() {
@@ -36,6 +36,7 @@ function Resume() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         rel="stylesheet"
         />
+        <link rel="stylesheet" href="./resume.css" />
         <link
         rel="preload"
         href="./fonts/Jost-Medium.woff2"
@@ -58,8 +59,8 @@ function Resume() {
                 <h1 className="mb-0 text-5xl font-bold text-gray-700">
                 {resume.name}
                 <a className="print:hidden" href="" onClick={print}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-7 h-7 inline-block mb-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7 inline-block mb-2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25"/>
                     </svg>
                 </a>
                 </h1>
@@ -78,8 +79,8 @@ function Resume() {
                 className="justify-between px-3 mt-0 mb-5 text-4xl font-black leading-none text-white bg-gray-700 initials-container print:bg-black"
                 // style={{padding-bottom: 1.5rem; padding-top: 1.5rem;}}
                 >
-                    {resume.initials.map((init) => (
-                        <section className="text-center initial">{init}</section>
+                    {resume.initials.map((init, index) => (
+                        <section key={index} className="text-center initial">{init}</section>
                         ))}
             </section>
             </header>

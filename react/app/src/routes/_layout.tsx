@@ -1,6 +1,7 @@
 import { getSiteMetadata } from '../util/contentUtil';
 import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import { SiteMetaData } from '../model/sitemetadata';
+import './site.css';
 import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet';
 import rehypeRaw from 'rehype-raw';
