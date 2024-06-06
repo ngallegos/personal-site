@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout, {loader as layoutLoader } from './routes/_layout';
 import ErrorPage from './error-page';
 import Page, {loader as pageLoader} from './routes/page';
-import Resume, {loader as resumeLoader} from './routes/resume';
+import Resume, {loader as resumeLoader} from './routes/resume/resume';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -1,24 +1,23 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useParams, useLoaderData } from 'react-router-dom';
-import { getPageContent } from '../util/contentUtil';
+import { getPageContent } from '../../util/contentUtil';
 import ReactMarkdown from 'react-markdown';
-import { MetaContext } from '../context/metaContext';
+import { MetaContext } from '../../context/metaContext';
 import { Helmet } from 'react-helmet';
 //import './resume.css'
-import { Resume as ResumeModel } from '../model/resume';
+import { Resume as ResumeModel } from '../../model/resume';
+import ResumeContact from './_resume-contact';
+import ResumeSummary from './_resume-summary';
+import ResumeSkills from './_resume-skills';
+import ResumeEducation from './_resume-education';
+import ResumeExperience from './_resume-experience';
 
 function Resume() {
     const meta = useContext(MetaContext);
-    var params = useParams();
-    const pageTitle = !!params.slug ? params.slug + " | " : "";
-    var content = useLoaderData() as string;
-    var title = `${meta.siteName} | Resume`;
-    var resume  = {
-        name: "Nicholas Gallegos",
-        title: "Senior Software Engineer",
-        location: "San Francisco, CA",
-        initials: ["N", "G"]
-    } as ResumeModel
+    const title = `${meta.siteName} | Resume`;
+    const resume = useLoaderData() as ResumeModel;
+    const keywords = `resume,cv,${resume.name}`;
+    
 
     function print(){
         window.print();
@@ -29,7 +28,7 @@ function Resume() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content="Senior Software Engineer" />
-        <meta name="keywords" content="resume,cv,@resume.Name" />
+        <meta name="keywords" content={keywords} />
         <meta name="author" content={resume.name} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -87,11 +86,11 @@ function Resume() {
             {/* <!-- Column --------------------------------------------------------------------------------------------------> */}
             <section className="col-gap-8 print:col-count-2 print:h-letter-col-full col-fill-balance md:col-count-2 md:h-letter-col-full">
             <section className="flex-col">
-                {/* <partial name="Shared/_ResumeContact" model="@resume"/>
-                <partial name="Shared/_ResumeSummary" model="@resume"/>
-                <partial name="Shared/_ResumeSkills" model="@resume"/>
-                <partial name="Shared/_ResumeEducation" model="@resume"/>
-                <partial name="Shared/_ResumeExperience" model="@resume"/> */}
+                <ResumeContact resume={resume}/>
+                <ResumeSummary resume={resume}/>
+                <ResumeSkills resume={resume}/>
+                <ResumeEducation resume={resume}/>
+                <ResumeExperience resume={resume}/>
             </section>
             {/* <!-- end Column --> */}
             </section>
@@ -103,9 +102,23 @@ function Resume() {
 }
 
 export async function loader({ params } : any) {
-    const content = await getPageContent(params.slug);
-    if (!content) throw new Response("", { status: 404 });
-    return content;
+    var resume  = {
+        name: "Nicholas Gallegos",
+        title: "Senior Software Engineer",
+        location: "San Francisco, CA",
+        initials: ["N", "G"],
+        phone: "555-555-5555",
+        email: "test@test.com",
+        website: "https://www.test.com",
+        gitHub: "https://www.github.com/test",
+        gitHubUsername: "test",
+        cleanWebsite: "www.test.com",
+    } as ResumeModel
+
+    return resume;
+    // const content = await getPageContent(params.slug);
+    // if (!content) throw new Response("", { status: 404 });
+    // return content;
 }
 
 

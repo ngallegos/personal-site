@@ -1,12 +1,12 @@
 export interface Resume {
     resumeName: string;
     name: string;
-    title: string | null;
+    title: string;
     skills: string[];
     tools: string[];
     concepts: string[];
     location: string | null;
-    email: string | null;
+    email: string;
     phone: string | null;
     website: string | null;
     gitHub: string | null;
@@ -22,8 +22,8 @@ export interface Resume {
 }
 
 export interface ResumeSection {
-    heading: string | null;
+    heading: string;
     subHeading: string | null;
-    category: string | null;
-    content: string | null;
+    category: string;
+    content: string;
 }
