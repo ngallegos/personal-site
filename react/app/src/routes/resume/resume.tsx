@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useParams, useLoaderData } from 'react-router-dom';
-import { getPageContent } from '../../util/contentUtil';
+import { getPageContent, getSiteResume } from '../../util/contentUtil';
 import ReactMarkdown from 'react-markdown';
 import { MetaContext } from '../../context/metaContext';
 import { Helmet } from 'react-helmet';
@@ -102,41 +102,9 @@ function Resume() {
 }
 
 export async function loader({ params } : any) {
-    var resume  = {
-        name: "Nicholas Gallegos",
-        title: "Senior Software Engineer",
-        location: "San Francisco, CA",
-        initials: ["N", "G"],
-        phone: "555-555-5555",
-        email: "test@test.com",
-        website: "https://www.test.com",
-        gitHub: "https://www.github.com/test",
-        gitHubUsername: "test",
-        cleanWebsite: "www.test.com",
-        education: [{
-            category: "education",
-            heading: "University of California, Berkeley",
-            subHeading: "2010-2011",
-            content: "B.S. in Computer Science"
-        }],
-        summary: [{
-            content: "Accomplished senior software engineer"
-        }],
-        experience: [{
-            category: "experience",
-            heading: "Senior Software Engineer",
-            subHeading: "Google",
-            content: "Worked on the Google search engine\n* tested stuff"
-        }],
-        skills: ["C#", "React"],
-        tools: ["VS Code"],
-        concepts: ["TDD"]
-    } as ResumeModel
-
-    return resume;
-    // const content = await getPageContent(params.slug);
-    // if (!content) throw new Response("", { status: 404 });
-    // return content;
+    const content = await getSiteResume();
+    if (!content) throw new Response("", { status: 404 });
+    return content;
 }
 
 
