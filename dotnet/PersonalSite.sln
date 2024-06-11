@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{29942F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.Utilities", "PersonalSite.Utilities\PersonalSite.Utilities.csproj", "{99C986FD-0B19-4C73-B199-AE8E408B4955}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.AwsLambda", "PersonalSite.AwsLambda\src\PersonalSite.AwsLambda\PersonalSite.AwsLambda.csproj", "{B9839CA0-C02E-4109-A0E9-4A26D31F9223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,5 +35,9 @@ Global
 		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99C986FD-0B19-4C73-B199-AE8E408B4955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
