@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using PersonalSite.ContentModel;
+
 namespace PersonalSite.Web.Pages.Shared.Components.Footer;
 
 public class FooterViewComponent : ViewComponent

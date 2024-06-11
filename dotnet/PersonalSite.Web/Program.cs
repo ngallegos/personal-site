@@ -1,4 +1,5 @@
 using Contentful.AspNetCore;
+using PersonalSite.ContentModel;
 using PersonalSite.Web.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,15 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment.EnvironmentName;
 if (string.IsNullOrEmpty(builder.Configuration["ContentfulOptions:DeliveryApiKey"]))
 {
-    builder.Host.ConfigureAppConfiguration((ctx, configurationBuilder) =>
-    {
-        configurationBuilder.AddAmazonSecretsManager(ctx.Configuration["AWS:Region"],
-            ctx.Configuration["AWS:SecretNames:Contentful"]);
-    });
+    builder.Configuration.AddAmazonSecretsManager(builder.Configuration["AWS:Region"],
+            builder.Configuration["AWS:SecretNames:Contentful"]);
 }
 
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddScoped<IContentService, ContentService>();
+builder.Services.AddScoped<IContentService, CachedContentService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

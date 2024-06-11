@@ -6,12 +6,12 @@ namespace PersonalSite.Web.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly IContentService _contentService;
+    private readonly CT.IContentService _contentService;
     
     [BindProperty]
     public CT.Page? HomePage { get; set; }
 
-    public IndexModel(IContentService contentService)
+    public IndexModel(CT.IContentService contentService)
     {
         _contentService = contentService;
     }

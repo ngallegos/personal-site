@@ -25,8 +25,7 @@ public class AwsSecretsManagerConfigurationProvider : ConfigurationProvider
     public override void Load()
     {
         var secret = GetSecret();
-
-        Data = JsonSerializer.Deserialize<Dictionary<string, string>>(secret);
+        Data = JsonSerializer.Deserialize<Dictionary<string, string>>(secret)!;
     }
 
     private string GetSecret()
@@ -91,9 +90,11 @@ public class AwsSecretsManagerConfigurationSource : IConfigurationSource
 public static class Extensions
 {
     public static void AddAmazonSecretsManager(this IConfigurationBuilder configurationBuilder, 
-        string region,
-        string secretName)
+        string? region,
+        string? secretName)
     {
+        if (string.IsNullOrEmpty(region) || string.IsNullOrEmpty(secretName))
+            throw new ArgumentException($"Region name and secret name are required");
         var configurationSource = 
             new AwsSecretsManagerConfigurationSource(region, secretName);
 

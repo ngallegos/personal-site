@@ -24,13 +24,13 @@ public class NavLinksViewComponent : ViewComponent
         switch (linkType)
         {
             case NavLinksType.Nav:
-                model.Links = siteMeta.NavLinks;
+                model.Links = siteMeta?.NavLinks ?? new List<Link>();
                 break;
             case NavLinksType.Footer:
-                model.Links = siteMeta.ContactLinks;
+                model.Links = siteMeta?.ContactLinks ?? new List<Link>();
                 break;
             default:
-                model.Links = siteMeta.NavLinks.Concat(siteMeta.ContactLinks).ToList();
+                model.Links = siteMeta?.NavLinks.Concat(siteMeta.ContactLinks).ToList() ?? new List<Link>();
                 break;
         }
         return View(model);
@@ -45,7 +45,7 @@ public enum NavLinksType
 
 public class NavLinksViewModel
 {
-    public string UlClass { get; set; }
-    public string LiClass { get; set; }
+    public string? UlClass { get; set; }
+    public string? LiClass { get; set; }
     public List<Link> Links { get; set; } = new List<Link>();
 }
