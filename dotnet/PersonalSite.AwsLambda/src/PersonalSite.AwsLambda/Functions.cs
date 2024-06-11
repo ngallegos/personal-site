@@ -1,6 +1,7 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
+using PersonalSite.ContentModel;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -11,7 +12,7 @@ namespace PersonalSite.AwsLambda;
 /// </summary>
 public class Functions
 {
-    private ICalculatorService _calculatorService;
+    private IContentService _contentService;
 
     /// <summary>
     /// Default constructor.
@@ -23,90 +24,35 @@ public class Functions
     /// As an alternative, a dependency could be injected into each 
     /// Lambda function handler via the [FromServices] attribute.
     /// </remarks>
-    public Functions(ICalculatorService calculatorService)
+    public Functions(IContentService contentService)
     {
-        _calculatorService = calculatorService;
+        _contentService = contentService;
     }
 
-    /// <summary>
-    /// Root route that provides information about the other requests that can be made.
-    /// </summary>
-    /// <returns>API descriptions.</returns>
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/")]
-    public string Default()
+    [HttpApi(LambdaHttpMethod.Get, "/{domain}/resume")]
+    public async Task<Resume?> GetResume(string domain, ILambdaContext context)
     {
-        var docs = @"Lambda Calculator Home:
-You can make the following requests to invoke other Lambda functions perform calculator operations:
-/add/{x}/{y}
-/subtract/{x}/{y}
-/multiply/{x}/{y}
-/divide/{x}/{y}
-";
-        return docs;
+        var resume = await _contentService.GetResumeAsync();
+        context.Logger.LogInformation($"GET resume for domain: {domain}");
+        return resume;
     }
 
-    /// <summary>
-    /// Perform x + y
-    /// </summary>
-    /// <param name="x">Left hand operand of the arithmetic operation.</param>
-    /// <param name="y">Right hand operand of the arithmetic operation.</param>
-    /// <returns>Sum of x and y.</returns>
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/add/{x}/{y}")]
-    public int Add(int x, int y, ILambdaContext context)
+    [HttpApi(LambdaHttpMethod.Get, "/{domain}/meta")]
+    public async Task<SiteMetaData?> GetSiteMetaData(string domain, ILambdaContext context)
     {
-        var sum = _calculatorService.Add(x, y);
-
-        context.Logger.LogInformation($"{x} plus {y} is {sum}");
-        return sum;
+        var meta = await _contentService.GetSiteMetaDataAsync(domain);
+        context.Logger.LogInformation($"GET site meta for domain: {domain}");
+        return meta;
     }
 
-    /// <summary>
-    /// Perform x - y.
-    /// </summary>
-    /// <param name="x">Left hand operand of the arithmetic operation.</param>
-    /// <param name="y">Right hand operand of the arithmetic operation.</param>
-    /// <returns>x subtract y</returns>
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/subtract/{x}/{y}")]
-    public int Subtract(int x, int y, ILambdaContext context)
+    [HttpApi(LambdaHttpMethod.Get, "/{domain}/page/{slug}")]
+    public async Task<string?> GetPage(string domain, string slug, ILambdaContext context)
     {
-        var difference = _calculatorService.Subtract(x, y);
-
-        context.Logger.LogInformation($"{x} subtract {y} is {difference}");
-        return difference;
-    }
-
-    /// <summary>
-    /// Perform x * y.
-    /// </summary>
-    /// <param name="x">Left hand operand of the arithmetic operation.</param>
-    /// <param name="y">Right hand operand of the arithmetic operation.</param>
-    /// <returns>x multiply y</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/multiply/{x}/{y}")]
-    public int Multiply(int x, int y, ILambdaContext context)
-    {
-        var product = _calculatorService.Multiply(x, y);
-
-        context.Logger.LogInformation($"{x} multiplied by {y} is {product}");
-        return product;
-    }
-
-    /// <summary>
-    /// Perform x / y.
-    /// </summary>
-    /// <param name="x">Left hand operand of the arithmetic operation.</param>
-    /// <param name="y">Right hand operand of the arithmetic operation.</param>
-    /// <returns>x divide y</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/divide/{x}/{y}")]
-    public int Divide(int x, int y, ILambdaContext context)
-    {
-        var quotient = _calculatorService.Divide(x, y);
-
-        context.Logger.LogInformation($"{x} divided by {y} is {quotient}");
-        return quotient;
+        var page = await _contentService.GetPageAsync("about");
+        context.Logger.LogInformation($"GET page for domain: {domain}, slug: {slug}");
+        return page?.Content ?? "";
     }
 }

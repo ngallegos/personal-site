@@ -3,7 +3,7 @@
   "Transform": "AWS::Serverless-2016-10-31",
   "Description": "An AWS Serverless Application. This template is partially managed by Amazon.Lambda.Annotations (v1.3.0.0).",
   "Resources": {
-    "PersonalSiteAwsLambdaFunctionsDefaultGenerated": {
+    "PersonalSiteAwsLambdaFunctionsGetSiteMetaDataGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -20,19 +20,19 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_Default_Generated::Default",
+        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetSiteMetaData_Generated::GetSiteMetaData",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/",
+              "Path": "/{domain}/meta",
               "Method": "GET"
             }
           }
         }
       }
     },
-    "PersonalSiteAwsLambdaFunctionsAddGenerated": {
+    "PersonalSiteAwsLambdaFunctionsGetResumeGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -49,19 +49,19 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_Add_Generated::Add",
+        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetResume_Generated::GetResume",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/add/{x}/{y}",
+              "Path": "/{domain}/resume",
               "Method": "GET"
             }
           }
         }
       }
     },
-    "PersonalSiteAwsLambdaFunctionsSubtractGenerated": {
+    "PersonalSiteAwsLambdaFunctionsGetPageGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -78,70 +78,12 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_Subtract_Generated::Subtract",
+        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetPage_Generated::GetPage",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/subtract/{x}/{y}",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "PersonalSiteAwsLambdaFunctionsMultiplyGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet8",
-        "CodeUri": ".",
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_Multiply_Generated::Multiply",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/multiply/{x}/{y}",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "PersonalSiteAwsLambdaFunctionsDivideGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet8",
-        "CodeUri": ".",
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_Divide_Generated::Divide",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/divide/{x}/{y}",
+              "Path": "/{domain}/page/{slug}",
               "Method": "GET"
             }
           }

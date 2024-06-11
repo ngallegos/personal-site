@@ -1,4 +1,8 @@
+using Contentful.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PersonalSite.ContentModel;
+using PersonalSite.Web.Config;
 
 namespace PersonalSite.AwsLambda;
 
@@ -20,8 +24,14 @@ public class Startup
 
         //// Example of creating the IConfiguration object and
         //// adding it to the dependency injection container.
-        //var builder = new ConfigurationBuilder()
-        //                    .AddJsonFile("appsettings.json", true);
+
+        var configuration = new ConfigurationManager();
+        configuration.AddJsonFile("appsettings.json", true);
+        configuration.AddAmazonSecretsManager(configuration["AWS:Region"],
+            configuration["AWS:SecretNames:Contentful"]);
+
+        services.AddContentful(configuration);
+        services.AddScoped<IContentService, ContentService>();
 
         //// Add AWS Systems Manager as a potential provider for the configuration. This is 
         //// available with the Amazon.Extensions.Configuration.SystemsManager NuGet package.
