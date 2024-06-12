@@ -1,8 +1,6 @@
-using Contentful.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PersonalSite.ContentModel;
-using PersonalSite.Web.Config;
+using PersonalSite.AwsLambda.Extensions;
 
 namespace PersonalSite.AwsLambda;
 
@@ -19,26 +17,19 @@ public class Startup
     /// </summary>
     public void ConfigureServices(IServiceCollection services)
     {
-        // Here we'll add an instance of our calculator service that will be used by each function
-        services.AddSingleton<ICalculatorService>(new CalculatorService());
 
         //// Example of creating the IConfiguration object and
         //// adding it to the dependency injection container.
 
-        var configuration = new ConfigurationManager();
-        configuration.AddJsonFile("appsettings.json", true);
-        configuration.AddAmazonSecretsManager(configuration["AWS:Region"],
-            configuration["AWS:SecretNames:Contentful"]);
+        var builder = new ConfigurationBuilder();
+        builder.AddJsonFile("appsettings.json", true);
 
-        services.AddContentful(configuration);
-        services.AddScoped<IContentService, ContentService>();
+        services.AddSingleton<IConfiguration>(builder.Build());
+        services.AddContentServiceFactory();
 
         //// Add AWS Systems Manager as a potential provider for the configuration. This is 
         //// available with the Amazon.Extensions.Configuration.SystemsManager NuGet package.
         //builder.AddSystemsManager("/app/settings");
-
-        //var configuration = builder.Build();
-        //services.AddSingleton<IConfiguration>(configuration);
 
         //// Example of using the AWSSDK.Extensions.NETCore.Setup NuGet package to add
         //// the Amazon S3 service client to the dependency injection container.
