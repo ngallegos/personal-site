@@ -1,11 +1,5 @@
-using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Text.Json;
-using Amazon;
-using Amazon.Runtime;
-using Amazon.Runtime.CredentialManagement;
-using Amazon.SecretsManager;
-using Amazon.SecretsManager.Model;
 using Microsoft.Extensions.Configuration;
 
 namespace PersonalSite.Web.Config;
@@ -50,7 +44,7 @@ public class AwsSecretsManagerConfigurationProvider : ConfigurationProvider
         }
         else
         {
-            var memoryStream = response.SecretBinary;
+            var memoryStream = responseContent?.SecretBinary ?? throw new InvalidOperationException("Secret binary is null");
             var reader = new StreamReader(memoryStream);
             secretString = 
                 System.Text.Encoding.UTF8
@@ -62,7 +56,8 @@ public class AwsSecretsManagerConfigurationProvider : ConfigurationProvider
 
     private class SecretsResponse
     {
-        public string SecretString { get; set; }
+        public string? SecretString { get; set; }
+        public MemoryStream? SecretBinary { get; set; }
     }
 }
 
