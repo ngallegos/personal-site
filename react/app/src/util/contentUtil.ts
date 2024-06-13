@@ -7,7 +7,6 @@ export const contentDomain = process.env.REACT_APP_CONTENT_DOMAIN;
 export async function getPageContent(slug: string): Promise<string> {
     slug = slug || "home";
     const response = await fetch(`${contentApiRoot}/${contentDomain}/page/${slug}`);
-    console.log(response);
     return response.text();
 }
 
