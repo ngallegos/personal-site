@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.Utilities", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.AwsLambda", "PersonalSite.AwsLambda\PersonalSite.AwsLambda.csproj", "{B9839CA0-C02E-4109-A0E9-4A26D31F9223}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{52D8CCA3-A257-4819-A44A-8FB3EEAA3869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.AwsLambda.Tests", "test\PersonalSite.AwsLambda.Tests\PersonalSite.AwsLambda.Tests.csproj", "{860D709B-C497-4298-8E28-8BE77245313E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +43,12 @@ Global
 		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9839CA0-C02E-4109-A0E9-4A26D31F9223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860D709B-C497-4298-8E28-8BE77245313E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860D709B-C497-4298-8E28-8BE77245313E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860D709B-C497-4298-8E28-8BE77245313E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860D709B-C497-4298-8E28-8BE77245313E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{860D709B-C497-4298-8E28-8BE77245313E} = {52D8CCA3-A257-4819-A44A-8FB3EEAA3869}
 	EndGlobalSection
 EndGlobal

@@ -15,6 +15,6 @@
     <PackageReference Include="Moq" Version="4.18.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PersonalSite.AwsLambda\PersonalSite.AwsLambda.csproj" />
+    <ProjectReference Include="..\..\PersonalSite.AwsLambda\PersonalSite.AwsLambda.csproj" />
   </ItemGroup>
 </Project>
