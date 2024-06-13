@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
@@ -32,32 +33,38 @@ public class Functions
     }
 
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/{domain}/resume")]
-    public async Task<Resume?> GetResume(string domain, ILambdaContext context)
+    [RestApi(LambdaHttpMethod.Get, "/{domain}/resume")]
+    public async Task<IHttpResult> GetResume(string domain, ILambdaContext context)
     {
         var contentService = await _contentServiceFactory.GetContentService();
         var resume = await contentService.GetResumeAsync();
         context.Logger.LogInformation($"GET resume for domain: {domain}");
-        return resume;
+        
+        return HttpResults.Ok(JsonSerializer.Serialize(resume, new JsonSerializerOptions{ PropertyNamingPolicy = JsonNamingPolicy.CamelCase }))
+            .AddHeader("Access-Control-Allow-Origin", "*")
+            .AddHeader("Content-Type", "application/json");
     }
 
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/{domain}/meta")]
-    public async Task<SiteMetaData?> GetSiteMetaData(string domain, ILambdaContext context)
+    [RestApi(LambdaHttpMethod.Get, "/{domain}/meta")]
+    public async Task<IHttpResult> GetSiteMetaData(string domain, ILambdaContext context)
     {
         var contentService = await _contentServiceFactory.GetContentService();
         var meta = await contentService.GetSiteMetaDataAsync(domain);
         context.Logger.LogInformation($"GET site meta for domain: {domain}");
-        return meta;
+        return HttpResults.Ok(JsonSerializer.Serialize(meta, new JsonSerializerOptions{ PropertyNamingPolicy = JsonNamingPolicy.CamelCase }))
+            .AddHeader("Access-Control-Allow-Origin", "*");
     }
 
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/{domain}/page/{slug}")]
-    public async Task<string?> GetPage(string domain, string slug, ILambdaContext context)
+    [RestApi(LambdaHttpMethod.Get, "/{domain}/page/{slug}")]
+    public async Task<IHttpResult> GetPage(string domain, string slug, ILambdaContext context)
     {
         var contentService = await _contentServiceFactory.GetContentService();
         var page = await contentService.GetPageAsync("about");
         context.Logger.LogInformation($"GET page for domain: {domain}, slug: {slug}");
-        return page?.Content ?? "";
+        return HttpResults.Ok(page?.Content ?? "")
+            .AddHeader("Access-Control-Allow-Origin", "*")
+            .AddHeader("Content-Type", "application/json");
     }
 }

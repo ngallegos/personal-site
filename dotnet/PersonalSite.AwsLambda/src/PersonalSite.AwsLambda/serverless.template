@@ -23,7 +23,7 @@
         "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetSiteMetaData_Generated::GetSiteMetaData",
         "Events": {
           "RootGet": {
-            "Type": "HttpApi",
+            "Type": "Api",
             "Properties": {
               "Path": "/{domain}/meta",
               "Method": "GET"
@@ -52,7 +52,7 @@
         "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetResume_Generated::GetResume",
         "Events": {
           "RootGet": {
-            "Type": "HttpApi",
+            "Type": "Api",
             "Properties": {
               "Path": "/{domain}/resume",
               "Method": "GET"
@@ -81,7 +81,7 @@
         "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetPage_Generated::GetPage",
         "Events": {
           "RootGet": {
-            "Type": "HttpApi",
+            "Type": "Api",
             "Properties": {
               "Path": "/{domain}/page/{slug}",
               "Method": "GET"
