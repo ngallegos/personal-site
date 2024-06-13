@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Contentful.CodeFirst;
 using Contentful.Core.Models;
 using Contentful.Core.Models.Management;
@@ -10,6 +11,7 @@ namespace PersonalSite.ContentModel;
 public class Resume
 {
     [IgnoreContentField]
+    [JsonIgnore]
     public SystemProperties? Sys { get; set; }
     
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "resumeName", Required = true, Name = "Resume Name")]

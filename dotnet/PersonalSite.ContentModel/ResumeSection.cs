@@ -2,6 +2,7 @@ using Contentful.CodeFirst;
 using Contentful.Core.Models;
 using Contentful.Core.Models.Management;
 using Microsoft.AspNetCore.Html;
+using Newtonsoft.Json;
 
 namespace PersonalSite.ContentModel;
 
@@ -10,6 +11,7 @@ namespace PersonalSite.ContentModel;
 public class ResumeSection
 {
     [IgnoreContentField]
+    [JsonIgnore]
     public SystemProperties? Sys { get; set; }
     
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "heading", Required = true, Name = "Heading")]

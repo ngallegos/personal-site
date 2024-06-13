@@ -3,7 +3,7 @@
   "Transform": "AWS::Serverless-2016-10-31",
   "Description": "An AWS Serverless Application. This template is partially managed by Amazon.Lambda.Annotations (v1.3.0.0).",
   "Resources": {
-    "PersonalSiteAwsLambdaFunctionsGetSiteMetaDataGenerated": {
+    "PersonalSiteAwsLambdaFunctionsGetContentGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -20,70 +20,12 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetSiteMetaData_Generated::GetSiteMetaData",
+        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetContent_Generated::GetContent",
         "Events": {
           "RootGet": {
             "Type": "Api",
             "Properties": {
-              "Path": "/{domain}/meta",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "PersonalSiteAwsLambdaFunctionsGetResumeGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet8",
-        "CodeUri": ".",
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetResume_Generated::GetResume",
-        "Events": {
-          "RootGet": {
-            "Type": "Api",
-            "Properties": {
-              "Path": "/{domain}/resume",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "PersonalSiteAwsLambdaFunctionsGetPageGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet8",
-        "CodeUri": ".",
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "PersonalSite.AwsLambda::PersonalSite.AwsLambda.Functions_GetPage_Generated::GetPage",
-        "Events": {
-          "RootGet": {
-            "Type": "Api",
-            "Properties": {
-              "Path": "/{domain}/page/{slug}",
+              "Path": "/{domain}/{contentType}/{slug}",
               "Method": "GET"
             }
           }
