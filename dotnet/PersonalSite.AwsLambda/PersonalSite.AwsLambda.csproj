@@ -27,9 +27,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\..\PersonalSite.ContentModel\PersonalSite.ContentModel.csproj" />
-    </ItemGroup>
-    <ItemGroup>
       <Content Update="appsettings.json">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -39,5 +36,8 @@
       <Content Include="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\PersonalSite.ContentModel\PersonalSite.ContentModel.csproj" />
     </ItemGroup>
 </Project>
