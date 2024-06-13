@@ -1,0 +1,17 @@
+{
+
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": "A personal react-based website backed by contentful",
+  "main": "index.js",
+  "repository": "https://github.com/ngallegos/personal-site",
+  "author": "Nick Gallegos",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^16.7.13",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
