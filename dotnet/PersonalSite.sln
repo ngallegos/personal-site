@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{29942F
 		global.json = global.json
 		LICENSE = LICENSE
 		README.md = README.md
+		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite.Utilities", "PersonalSite.Utilities\PersonalSite.Utilities.csproj", "{99C986FD-0B19-4C73-B199-AE8E408B4955}"
