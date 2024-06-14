@@ -1,21 +1,17 @@
-import { useContext } from 'react';
-import { useParams, useLoaderData } from 'react-router-dom';
-import { getPageContent, getSiteResume } from '../../util/contentUtil';
-import ReactMarkdown from 'react-markdown';
-import { MetaContext } from '../../context/metaContext';
-import { Helmet } from 'react-helmet';
-//import './resume.css'
+import { useLoaderData } from 'react-router-dom';
+import { getSiteMetadata, getSiteResume } from '../../util/contentUtil';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Resume as ResumeModel } from '../../model/resume';
 import ResumeContact from './_resume-contact';
 import ResumeSummary from './_resume-summary';
 import ResumeSkills from './_resume-skills';
 import ResumeEducation from './_resume-education';
 import ResumeExperience from './_resume-experience';
+import { SiteMetaData } from '../../model/sitemetadata';
 
 function Resume() {
-    const meta = useContext(MetaContext);
+    const {resume, meta} = useLoaderData() as { resume: ResumeModel, meta: SiteMetaData };
     const title = `${meta.siteName} | Resume`;
-    const resume = useLoaderData() as ResumeModel;
     const keywords = `resume,cv,${resume.name}`;
     
 
@@ -24,8 +20,8 @@ function Resume() {
         return false;
     }
   return (
-    <>
-      <Helmet>
+    <HelmetProvider>
+      <Helmet prioritizeSeoTags>
         <title>{title}</title>
         <meta name="description" content="Senior Software Engineer" />
         <meta name="keywords" content={keywords} />
@@ -35,7 +31,6 @@ function Resume() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         rel="stylesheet"
         />
-        <link rel="stylesheet" href="./resume.css" />
         <link
         rel="preload"
         href="./fonts/Jost-Medium.woff2"
@@ -48,6 +43,7 @@ function Resume() {
         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet"
         />
+        <link rel="stylesheet" href="./resume.css" />
       </Helmet>  
       <main className="font-jost hyphens-manual">
         {/* <!-- Page --------------------------------------------------------------------------------------------------------> */}
@@ -75,8 +71,7 @@ function Resume() {
             </section>
             {/* <!--   Initials Block         --> */}
             <section
-                className="justify-between px-3 mt-0 mb-5 text-4xl font-black leading-none text-white bg-gray-700 initials-container print:bg-black"
-                // style={{padding-bottom: 1.5rem; padding-top: 1.5rem;}}
+                className="justify-between py-6 px-3 mt-0 mb-5 text-4xl font-black leading-none text-white bg-gray-700 initials-container print:bg-black"
                 >
                     {resume.initials.map((init, index) => (
                         <section key={index} className="text-center initial">{init}</section>
@@ -97,12 +92,15 @@ function Resume() {
             {/* <!-- end Page --> */}
         </section>
         </main>
-    </>
+    </HelmetProvider>
   );
 }
 
 export async function loader({ params } : any) {
-    const content = await getSiteResume();
+    const content = { 
+        resume: await getSiteResume(), 
+        meta: await getSiteMetadata()
+    };
     if (!content) throw new Response("", { status: 404 });
     return content;
 }

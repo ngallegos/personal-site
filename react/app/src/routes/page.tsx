@@ -3,7 +3,7 @@ import { useParams, useLoaderData } from 'react-router-dom';
 import { getPageContent } from '../util/contentUtil';
 import ReactMarkdown from 'react-markdown';
 import { MetaContext } from '../context/metaContext';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import rehypeRaw from 'rehype-raw';
 import { useEffect } from 'react';
 import hljs from 'highlight.js';
@@ -20,7 +20,7 @@ function Page() {
   });
   return (
     <>
-      <Helmet>
+      <Helmet prioritizeSeoTags>
         <title>{pageTitle}{meta.siteName}</title>
       </Helmet>  
       <ReactMarkdown rehypePlugins={rehypeRaw as any}>{content}</ReactMarkdown>
