@@ -4,7 +4,7 @@ Various implementations of a personal site set up with Contentful and Tailwind
 
 [.NET 8](./dotnet/README.md) - An ASP.NET implementation hosted using AWS ECS/Fargate
 
-[React](./react/README.md) - A static react implentation for budget friendly hosting through AWS S3 and Cloudfront
+[React](./react/README.md) - A static react implementation for budget friendly hosting through AWS S3 and Cloudfront
 
 ## Getting Started
 
