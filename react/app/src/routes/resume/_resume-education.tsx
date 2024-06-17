@@ -1,5 +1,6 @@
 import { Resume } from "../../model/resume";
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 
 export default function ResumeEducation({resume}: {resume: Resume}){
@@ -29,7 +30,7 @@ export default function ResumeEducation({resume}: {resume: Resume}){
                                       {edu.subHeading}
                                   </p>
                               </header>
-                              <ReactMarkdown>{edu.content}</ReactMarkdown>
+                              <ReactMarkdown rehypePlugins={rehypeRaw as any}>{edu.content}</ReactMarkdown>
                           </section>);
                         
                       })}

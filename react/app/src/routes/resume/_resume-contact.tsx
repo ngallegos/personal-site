@@ -12,7 +12,7 @@ export default function ResumeContact({resume}: {resume: Resume}){
                         {!!resume.website &&
                             <li
                                 className="mt-1 leading-normal text-black text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md print:">
-                                <a href={resume.website} className="group">
+                                <a href={resume.website} className="group nav">
                                     <span
                                         className="mr-2 text-lg font-semibold text-gray-700 leading-snugish">
                                         Website:
@@ -28,7 +28,7 @@ export default function ResumeContact({resume}: {resume: Resume}){
                         {!!resume.gitHub &&
                             <li
                                 className="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md">
-                                <a href={resume.gitHub} className="group">
+                                <a href={resume.gitHub} className="group nav">
                                     <span
                                         className="mr-5 text-lg font-semibold text-gray-700 leading-snugish">
                                         Github:
@@ -43,7 +43,7 @@ export default function ResumeContact({resume}: {resume: Resume}){
                         }
                         <li
                             className="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md">
-                            <a href={"mailto:" + resume.email} className="group">
+                            <a href={"mailto:" + resume.email} className="group nav">
                                 <span
                                     className="mr-8 text-lg font-semibold text-gray-700 leading-snugish">
                                     Email:
@@ -58,7 +58,7 @@ export default function ResumeContact({resume}: {resume: Resume}){
                         {resume.phone &&
                             <li
                                 className="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md">
-                                <a href={"tel:" + resume.phone}>
+                                <a className="group nav" href={"tel:" + resume.phone}>
                                     <span
                                         className="mr-5 text-lg font-semibold text-gray-700 leading-snugish">
                                         Phone:
