@@ -18,6 +18,6 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        HomePage = await _contentService.GetPageAsync("/home");
+        HomePage = await _contentService.GetPageAsync(Request.Host.Value.Split(':')[0].ToLower(), "/home");
     }
 }

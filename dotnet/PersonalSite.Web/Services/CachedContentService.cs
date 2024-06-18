@@ -20,21 +20,21 @@ public class CachedContentService(
         });
     }
     
-    public override async Task<Page?> GetPageAsync(string slug)
+    public override async Task<Page?> GetPageAsync(string domain, string slug)
     {
         return await cache.GetOrCreateAsync($"page:{slug}", async entry =>
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(_cacheDurationSeconds);
-            return await base.GetPageAsync(slug);
+            return await base.GetPageAsync(domain, slug);
         });
     }
     
-    public override async Task<Resume?> GetResumeAsync()
+    public override async Task<Resume?> GetResumeAsync(string domain)
     {
         return await cache.GetOrCreateAsync("resume", async entry =>
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(_cacheDurationSeconds);
-            return await base.GetResumeAsync();
+            return await base.GetResumeAsync(domain);
         });
     }
 }

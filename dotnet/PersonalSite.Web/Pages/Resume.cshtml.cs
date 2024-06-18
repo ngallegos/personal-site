@@ -18,6 +18,6 @@ public class ResumeModel : PageModel
     
     public async Task OnGetAsync()
     {
-        Resume = await _contentService.GetResumeAsync();
+        Resume = await _contentService.GetResumeAsync(Request.Host.Value.Split(':')[0].ToLower());
     }
 }
