@@ -5,7 +5,7 @@ using Contentful.Core.Search;
 
 namespace PersonalSite.ContentModel.Blog;
 
-[ContentType(Description = "Blog Post", Name = "Post", DisplayField = "title", Id = "personalSiteBlogPost", Order = 2)]
+[ContentType(Description = "Blog Post", Name = "Post", DisplayField = "title", Id = "personalSiteBlogPost")]
 public class Post
 {
     [IgnoreContentField]
@@ -19,6 +19,10 @@ public class Post
     [FieldAppearance(SystemWidgetIds.SlugEditor)]
     [Unique]
     public string? Slug { get; set; }
+    
+    [ContentField(Type = SystemFieldTypes.Array, Id = "domains", Required = true, Name = "Domains")]
+    [FieldAppearance(SystemWidgetIds.TagEditor)]
+    public List<string> Domains { get; set; } = new List<string>();
     
     [ContentField(Type = SystemFieldTypes.Text, Id = "content", Required = true, Name = "Content")]
     [FieldAppearance(SystemWidgetIds.Markdown)]

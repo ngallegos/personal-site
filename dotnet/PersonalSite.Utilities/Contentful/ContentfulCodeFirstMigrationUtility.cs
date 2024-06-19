@@ -48,7 +48,9 @@ public class ContentfulCodeFirstMigrationUtility
                 typeof(CT.Page),
                 typeof(CT.Link),
                 typeof(CT.HeadMeta),
-                typeof(CT.SiteMetaData)
+                typeof(CT.SiteMetaData),
+                typeof(CT.Blog.Tag),
+                typeof(CT.Blog.Post)
             };
             var contentTypesSynchronized = 0;
             foreach (var type in contentTypes)

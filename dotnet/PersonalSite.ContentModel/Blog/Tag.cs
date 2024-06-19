@@ -4,7 +4,7 @@ using Contentful.Core.Models.Management;
 
 namespace PersonalSite.ContentModel.Blog;
 
-[ContentType(Description = "Blog Tag", Name = "Tag", DisplayField = "name", Id = "personalSiteBlogTag", Order = 1)]
+[ContentType(Description = "Blog Tag", Name = "Tag", DisplayField = "name", Id = "personalSiteBlogTag")]
 public class Tag
 {
     [IgnoreContentField]
