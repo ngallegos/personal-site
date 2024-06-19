@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PersonalSite.ContentModel;
+using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages.Shared.Components.NavLinks;
 
@@ -17,7 +18,7 @@ public class NavLinksViewComponent : ViewComponent
         var model = new NavLinksViewModel { UlClass = ulClass, LiClass = liClass };
         if (siteMeta == null)
         {
-            var domain = Request.Host.Value.Split(':')[0].ToLower();
+            var domain = this.GetRequestDomain();
             siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
         }
 

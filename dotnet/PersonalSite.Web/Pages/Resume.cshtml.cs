@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PersonalSite.ContentModel;
+using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages;
 
@@ -18,6 +19,6 @@ public class ResumeModel : PageModel
     
     public async Task OnGetAsync()
     {
-        Resume = await _contentService.GetResumeAsync(Request.Host.Value.Split(':')[0].ToLower());
+        Resume = await _contentService.GetResumeAsync(this.GetRequestDomain());
     }
 }

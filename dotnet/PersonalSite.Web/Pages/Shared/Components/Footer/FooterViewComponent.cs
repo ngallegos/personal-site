@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PersonalSite.ContentModel;
+using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages.Shared.Components.Footer;
 
@@ -14,7 +15,7 @@ public class FooterViewComponent : ViewComponent
     
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var domain = Request.Host.Value.Split(':')[0].ToLower();
+        var domain = this.GetRequestDomain();
         var siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
         return View(siteMeta);
     }

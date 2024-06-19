@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PersonalSite.Web.Extensions;
 using CT = PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
@@ -23,7 +24,7 @@ public class IndexModel : PageModel
     {
         var slug = Slug ?? "home";
         slug = "/" + slug.ToLower().TrimStart('/');
-        HomePage = await _contentService.GetPageAsync(Request.Host.Value.Split(':')[0].ToLower(), slug);
+        HomePage = await _contentService.GetPageAsync(this.GetRequestDomain(), slug);
         if (HomePage == null)
             return NotFound();
 
