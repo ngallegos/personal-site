@@ -2,6 +2,7 @@ using Contentful.CodeFirst;
 using Contentful.Core.Models;
 using Contentful.Core.Models.Management;
 using Contentful.Core.Search;
+using Microsoft.AspNetCore.Html;
 
 namespace PersonalSite.ContentModel.Blog;
 
@@ -27,10 +28,13 @@ public class Post
     [ContentField(Type = SystemFieldTypes.Text, Id = "content", Required = true, Name = "Content")]
     [FieldAppearance(SystemWidgetIds.Markdown)]
     public string? Content { get; set; }
+    
+    [IgnoreContentField]
+    public HtmlString? HtmlContent => Content?.ToHtmlString();
 
     [ContentField(Type = SystemFieldTypes.Array, Id = "tags", ItemsLinkType = SystemLinkTypes.Entry)]
-    [FieldAppearance(SystemWidgetIds.TagEditor)]
-    [LinkContentType("tag")]
+    [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteBlogTag")]
     public List<Tag> Tags { get; set; } = new List<Tag>();
     
     [ContentField(Type = SystemFieldTypes.Boolean, Id = "sticky", Required = true, Name = "Sticky")]

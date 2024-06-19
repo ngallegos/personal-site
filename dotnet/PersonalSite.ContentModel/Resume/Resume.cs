@@ -73,6 +73,7 @@ public class Resume
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "sections", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteResumeSection")]
     public List<ResumeSection> Sections { get; set; } = new List<ResumeSection>();
     
     [IgnoreContentField]

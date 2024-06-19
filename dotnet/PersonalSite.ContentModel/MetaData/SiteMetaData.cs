@@ -25,14 +25,17 @@ public class SiteMetaData
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "navLinks", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteLink")]
     public List<Link> NavLinks { get; set; } = new List<Link>();
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "contactLinks", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteLink")]
     public List<Link> ContactLinks { get; set; } = new List<Link>();
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "headMetaData", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteHeadMeta")]
     public List<HeadMeta> HeadMetaData { get; set; } = new List<HeadMeta>();
     
     [ContentField(Type = SystemFieldTypes.Text, Id = "aboutMe", Required = true, Name = "AboutMe")]

@@ -1,0 +1,16 @@
+@page "/blog/{slug}"
+@model PersonalSite.Web.Pages.BlogPostModel
+
+@{
+    ViewData["Title"] = Model.Post?.Title;
+}
+
+<h1>@Model.Post?.Title</h1>
+<div>
+    @if (Model.Post?.FeaturedImage != null)
+    {
+        var image = Model.Post.FeaturedImage;
+        <img src="@image.File.Url" alt="@image.Description"/>
+    }
+    @Model.Post?.HtmlContent
+</div>
