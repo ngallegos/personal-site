@@ -6,26 +6,21 @@ using CT = PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
 
-public class BlogPostModel : PageModel
+public class BlogPostModel(CT.IContentService contentService) : PageBase(contentService)
 {
-    private readonly CT.IContentService _contentService;
+    private readonly CT.IContentService _contentService = contentService;
     
     [BindProperty(SupportsGet = true)]
     public string? Slug { get; set; }
     
     [BindProperty]
     public CT.Blog.Post? Post { get; set; }
-    
-    public BlogPostModel(CT.IContentService contentService)
-    {
-        _contentService = contentService;
-    }
-    
-    public async Task<IActionResult> OnGetAsync()
+
+    protected override async Task<IActionResult> GetResultAsync()
     {
         var slug = Slug ?? "home";
         slug = "/" + slug.ToLower().TrimStart('/');
-        Post = await _contentService.GetBlogPostAsync(this.GetRequestDomain(), slug);
+        Post = await _contentService.GetBlogPostAsync(Domain, slug);
         if (Post == null)
             return NotFound();
 

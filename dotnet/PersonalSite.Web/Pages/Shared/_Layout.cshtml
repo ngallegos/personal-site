@@ -1,4 +1,5 @@
 ﻿@using PersonalSite.Web.Pages.Shared.Components.NavLinks
+@model PersonalSite.Web.Pages.PageBase
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <vc:head-meta></vc:head-meta>
+    <vc:head-meta site-meta="@Model.MetaData"></vc:head-meta>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/obsidian.min.css">
@@ -23,7 +24,7 @@
         <div class="w-full md:w-1/3 md:pr-32 order-3 md:order-1">
             <div class="max-w-2xl md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
                 <p class="font-bold my-4 md:my-12">Things To See</p>
-                <vc:nav-links link-type="@NavLinksType.Nav" ul-class="flex flex-wrap justify-between flex-col" li-class="nav"></vc:nav-links>
+                <vc:nav-links site-meta="@Model.MetaData" link-type="@NavLinksType.Nav" ul-class="flex flex-wrap justify-between flex-col" li-class="nav"></vc:nav-links>
             </div>
         </div>
         <div class="w-full md:w-2/3 order-1 md:order-2">
@@ -31,7 +32,7 @@
                 @RenderBody()
             </div>
         </div>
-        <vc:footer></vc:footer>
+        <vc:footer site-meta="@Model.MetaData"></vc:footer>
     </div>
 
     <!-- Pin to top right corner -->

@@ -13,10 +13,13 @@ public class FooterViewComponent : ViewComponent
         _contentService = contentService;
     }
     
-    public async Task<IViewComponentResult> InvokeAsync()
+    public async Task<IViewComponentResult> InvokeAsync(SiteMetaData? siteMeta = null)
     {
-        var domain = this.GetRequestDomain();
-        var siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        if (siteMeta == null)
+        {
+            var domain = this.GetRequestDomain();
+            siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        }
         return View(siteMeta);
     }
 }
