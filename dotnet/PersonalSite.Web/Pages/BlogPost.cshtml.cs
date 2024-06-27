@@ -1,12 +1,9 @@
-using Contentful.Core;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using PersonalSite.Web.Extensions;
 using CT = PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
 
-public class BlogPostModel(CT.IContentService contentService) : PageBase(contentService)
+public class BlogPostModel(CT.IContentService contentService) : BlogBase(contentService)
 {
     private readonly CT.IContentService _contentService = contentService;
     

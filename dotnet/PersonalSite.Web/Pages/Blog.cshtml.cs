@@ -1,11 +1,12 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
+using PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
 
-public class BlogModel : PageModel
+public class BlogModel(IContentService contentService) : BlogBase(contentService)
 {
-    public void OnGet()
+    protected override Task<IActionResult> GetResultAsync()
     {
-        
+        return new ValueTask<IActionResult>(Page()).AsTask();
     }
 }

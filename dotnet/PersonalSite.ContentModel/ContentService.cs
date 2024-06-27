@@ -15,6 +15,11 @@ public interface IContentService
 
 public class ContentService(IContentfulClient contentful) : IContentService
 {
+    private readonly SortOrderBuilder<Post> _postSortOrder = SortOrderBuilder<Post>
+        .New(x => x.Sticky, SortOrder.Reversed)
+        .ThenBy(x => x.Sys!.UpdatedAt, SortOrder.Reversed)
+        .ThenBy(x => x.Sys!.CreatedAt, SortOrder.Reversed);
+    
     public virtual async Task<Post?> GetBlogPostAsync(string domain, string slug)
     {
         var query = QueryBuilder<Post>.New.FieldEquals(x => x.Slug, slug)
@@ -44,6 +49,62 @@ public class ContentService(IContentfulClient contentful) : IContentService
         return posts.ToList();
     }
 
+    public virtual async Task<SiteMetaData?> GetPostMetaDataAsync(string domain, Post currentPost, int minRelatedPosts = 5)
+    {
+        var relatedTagIds = currentPost.Tags?.Select(x => x.Sys?.Id).ToList() ?? new List<string>();
+        var sortOrderBuilder = SortOrderBuilder<Post>
+            .New(x => x.Sticky, SortOrder.Reversed)
+            .ThenBy(x => x.Sys!.UpdatedAt, SortOrder.Reversed)
+            .ThenBy(x => x.Sys!.CreatedAt, SortOrder.Reversed);
+
+        throw new NotImplementedException();
+    }
+
+    private async Task<List<Post>> GetRelatedPostsAsync(string domain, Post currentPost, int minPosts = 5)
+    {
+        var posts = new List<Post>();
+        var relatedTagIds = currentPost.Tags?.Select(x => x.Sys!.Id).ToList() ?? new List<string>();
+
+        if (relatedTagIds.Any())
+        {
+            // Helps respect contentful rate limiting
+            var relatedTagChunks = relatedTagIds.Chunk(3);
+
+            foreach (var chunk in relatedTagChunks)
+            {
+                var relatedPostTasks = chunk.Select(tagId =>
+                {
+                    var builder = QueryBuilder<Post>.New
+                        .FieldDoesNotEqual(x => x.Slug, currentPost.Slug)
+                        .FieldMatches(x => x.Domains, domain)
+                        .LinksToEntry(tagId)
+                        .Limit(minPosts)
+                        .OrderBy(_postSortOrder.Build());
+                    return contentful.GetEntriesByType<Post>(builder);
+                });
+                
+                
+                posts.AddRange((await Task.WhenAll(relatedPostTasks)).SelectMany(c => c.Items));
+                
+                if (posts.Count >= minPosts)
+                    break;
+            }
+            
+        }
+
+        if (posts.Count < minPosts)
+            posts.AddRange(await GetBlogPostsAsync(domain, null, posts.Count, minPosts - posts.Count));
+        
+        return posts;
+    }
+
+    private async Task<List<Post>> GetBlogPostsAsync(string domain, string tag = null, int minPosts = 5)
+    {
+        
+
+        throw new NotImplementedException();
+    }
+    
     public virtual async Task<SiteMetaData?> GetSiteMetaDataAsync(string domain)
     {
         var query = QueryBuilder<SiteMetaData>.New.FieldMatches(x => x.Domains, domain);

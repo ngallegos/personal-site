@@ -5,20 +5,22 @@ using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages;
 
-public class ResumeModel : PageModel
+public class ResumeModel(IContentService contentService) : PageBase(contentService)
 {
-    private readonly IContentService _contentService;
+    private readonly IContentService _contentService = contentService;
     
     [BindProperty]
     public Resume? Resume { get; set; }
-    
-    public ResumeModel(IContentService contentService)
+
+    protected override async Task<IActionResult> GetResultAsync()
     {
-        _contentService = contentService;
+        Resume = await _contentService.GetResumeAsync(Domain);
+        return Page();
     }
-    
-    public async Task OnGetAsync()
+
+    protected override Task<SiteMetaData?> GetMetaDataAsync()
     {
-        Resume = await _contentService.GetResumeAsync(this.GetRequestDomain());
+        // No metadata for the resume page
+        return new ValueTask<SiteMetaData?>().AsTask();
     }
 }
