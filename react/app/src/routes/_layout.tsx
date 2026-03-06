@@ -87,7 +87,7 @@ function Layout() {
 export async function loader({ params }: any): Promise<LayoutLoaderData> {
   const [meta, posts] = await Promise.all([
     getSiteMetadata(),
-    getBlogPosts(),
+    getBlogPosts().catch(() => []),
   ]);
   if (!meta) throw new Response("", { status: 404 });
   return { meta, hasBlogPosts: posts.length > 0 };

@@ -78,7 +78,7 @@ export async function loader({ request }: any): Promise<BlogLoaderData> {
     const url = new URL(request.url);
     const tag = url.searchParams.get('tag') || undefined;
     const page = parseInt(url.searchParams.get('page') || '1');
-    const posts = await getBlogPosts(tag, page);
+    const posts = await getBlogPosts(tag, page).catch(() => []);
     return { posts, tag: tag ?? null, page };
 }
 
