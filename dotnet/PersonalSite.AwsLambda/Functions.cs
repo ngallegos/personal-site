@@ -25,7 +25,7 @@ public class Functions
         [FromQuery] string? tag = null, [FromQuery] int page = 1)
     {
         slug = slug ?? "";
-        context.Logger.LogInformation($"GET ${contentType} for domain: {domain}, slug: {slug}");
+        context.Logger.LogInformation($"GET {contentType} for domain: {domain}, slug: {slug}");
         return contentType.ToLower() switch
         {
             "resume" => await GetResume(domain, context),
