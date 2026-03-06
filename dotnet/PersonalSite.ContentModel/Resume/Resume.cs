@@ -14,6 +14,11 @@ public class Resume
     [JsonIgnore]
     public SystemProperties? Sys { get; set; }
     
+    
+    [ContentField(Type = SystemFieldTypes.Array, Id = "domains", Required = true, Name = "Domains")]
+    [FieldAppearance(SystemWidgetIds.TagEditor)]
+    public List<string> Domains { get; set; } = new List<string>();
+    
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "resumeName", Required = true, Name = "Resume Name")]
     [FieldAppearance(SystemWidgetIds.SingleLine, HelpText = "The name of the resume instance, not the person's name.")]
     public string? ResumeName { get; set; }
@@ -68,6 +73,7 @@ public class Resume
     
     [ContentField(Type = SystemFieldTypes.Array, Id = "sections", ItemsLinkType = SystemLinkTypes.Entry)]
     [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteResumeSection")]
     public List<ResumeSection> Sections { get; set; } = new List<ResumeSection>();
     
     [IgnoreContentField]

@@ -7,6 +7,8 @@ import Layout, {loader as layoutLoader } from './routes/_layout';
 import ErrorPage from './error-page';
 import Page, {loader as pageLoader} from './routes/page';
 import Resume, {loader as resumeLoader} from './routes/resume/resume';
+import Blog, {loader as blogLoader} from './routes/blog/blog';
+import BlogPost, {loader as blogPostLoader} from './routes/blog/blog-post';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,6 +18,8 @@ const router = createBrowserRouter([
   { path: '/resume', element: <Resume />, errorElement: <ErrorPage />, loader: resumeLoader },
   { path: '/', element: <Layout />, errorElement: <ErrorPage />, loader: layoutLoader,
     children: [
+      { path: "/blog", element: <Blog />, loader: blogLoader },
+      { path: "/blog/:slug", element: <BlogPost />, loader: blogPostLoader },
       { path: "/:slug?", element: <Page />, loader: pageLoader },
     ]
   }

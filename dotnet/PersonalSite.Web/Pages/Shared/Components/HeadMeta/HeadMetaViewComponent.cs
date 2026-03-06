@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PersonalSite.ContentModel;
+using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages.Shared.Components.HeadMeta;
 
@@ -12,10 +13,13 @@ public class HeadMetaViewComponent : ViewComponent
         _contentService = contentService;
     }
     
-    public async Task<IViewComponentResult> InvokeAsync()
+    public async Task<IViewComponentResult> InvokeAsync(SiteMetaData? siteMeta = null)
     {
-        var domain = Request.Host.Value.Split(':')[0].ToLower();
-        var siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        if (siteMeta == null)
+        {
+            var domain = this.GetRequestDomain();
+            siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
+        }
         return View(siteMeta);
     }
 }

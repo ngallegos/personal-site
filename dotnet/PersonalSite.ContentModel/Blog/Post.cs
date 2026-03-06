@@ -1,25 +1,26 @@
-﻿using System.Text.Json.Serialization;
 using Contentful.CodeFirst;
 using Contentful.Core.Models;
 using Contentful.Core.Models.Management;
 using Contentful.Core.Search;
 using Microsoft.AspNetCore.Html;
 
-namespace PersonalSite.ContentModel;
+namespace PersonalSite.ContentModel.Blog;
 
-[ContentType(Description = "Single page content", Name = "Page", 
-    DisplayField = "slug", Id = "personalSitePage")]
-public class Page
+[ContentType(Description = "Blog Post", Name = "Post", DisplayField = "title", Id = "personalSiteBlogPost")]
+public class Post
 {
     [IgnoreContentField]
-    [JsonIgnore]
     public SystemProperties? Sys { get; set; }
-        
+    
+    [ContentField(Type = SystemFieldTypes.Symbol, Id = "title", Required = true, Name = "Title")]
+    [FieldAppearance(SystemWidgetIds.SingleLine)]
+    public string? Title { get; set; }
+    
     [ContentField(Type = SystemFieldTypes.Symbol, Id = "slug", Required = true, Name = "Url Slug")]
     [FieldAppearance(SystemWidgetIds.SlugEditor)]
     [Unique]
     public string? Slug { get; set; }
-        
+    
     [ContentField(Type = SystemFieldTypes.Array, Id = "domains", Required = true, Name = "Domains")]
     [FieldAppearance(SystemWidgetIds.TagEditor)]
     public List<string> Domains { get; set; } = new List<string>();
@@ -29,8 +30,18 @@ public class Page
     public string? Content { get; set; }
     
     [IgnoreContentField]
+    [System.Text.Json.Serialization.JsonIgnore]
     public HtmlString? HtmlContent => Content?.ToHtmlString();
-        
+
+    [ContentField(Type = SystemFieldTypes.Array, Id = "tags", ItemsLinkType = SystemLinkTypes.Entry)]
+    [FieldAppearance(SystemWidgetIds.EntryMultipleLinksEditor)]
+    [LinkContentType("personalSiteBlogTag")]
+    public List<Tag> Tags { get; set; } = new List<Tag>();
+    
+    [ContentField(Type = SystemFieldTypes.Boolean, Id = "sticky", Required = true, Name = "Sticky")]
+    [BooleanAppearance("Yes", "No", "Should this post be sticky?")]
+    public bool Sticky { get; set; }
+    
     [ContentField(Type = SystemFieldTypes.Link, Id = "featuredImage", LinkType = SystemLinkTypes.Asset, Name = "Featured Image")]
     [FieldAppearance(SystemWidgetIds.AssetLinkEditor)]
     [MimeType(MimeTypes = new [] {MimeTypeRestriction.Image})]

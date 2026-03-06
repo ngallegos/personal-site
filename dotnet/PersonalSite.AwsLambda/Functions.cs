@@ -21,15 +21,19 @@ public class Functions
 
     [LambdaFunction]
     [RestApi(LambdaHttpMethod.Get, "/{domain}/{contentType}/{slug}")]
-    public async Task<IHttpResult> GetContent(ILambdaContext context, string domain, string contentType,  string slug = "")
+    public async Task<IHttpResult> GetContent(ILambdaContext context, string domain, string contentType, string slug = "",
+        [FromQuery] string? tag = null, [FromQuery] int page = 1)
     {
-        slug = "/" + (slug ?? "").TrimStart('/');
-        context.Logger.LogInformation($"GET ${contentType} for domain: {domain}, slug: {slug}");
+        slug = slug ?? "";
+        context.Logger.LogInformation($"GET {contentType} for domain: {domain}, slug: {slug}");
         return contentType.ToLower() switch
         {
             "resume" => await GetResume(domain, context),
             "meta" => await GetSiteMetaData(domain, context),
-            "page" => await GetPage(domain, slug, context),
+            "page" => await GetPage(domain, "/" + slug.TrimStart('/'), context),
+            "blog" => string.IsNullOrEmpty(slug)
+                ? await GetBlogPosts(domain, context, tag, page)
+                : await GetBlogPost(domain, slug, context),
             _ => throw new ArgumentException($"Invalid content type: {contentType}")
         };
     }
@@ -37,8 +41,8 @@ public class Functions
     private async Task<IHttpResult> GetResume(string domain, ILambdaContext context)
     {
         var contentService = await _contentServiceFactory.GetContentService();
-        var resume = await contentService.GetResumeAsync();
-        
+        var resume = await contentService.GetResumeAsync(domain);
+
         return HttpResults.Ok(JsonSerializer.Serialize(resume, new JsonSerializerOptions{ PropertyNamingPolicy = JsonNamingPolicy.CamelCase }))
             .AddHeader("Access-Control-Allow-Origin", "*")
             .AddHeader("Content-Type", "application/json");
@@ -56,8 +60,30 @@ public class Functions
     private async Task<IHttpResult> GetPage(string domain, string slug, ILambdaContext context)
     {
         var contentService = await _contentServiceFactory.GetContentService();
-        var page = await contentService.GetPageAsync(slug);
+        var page = await contentService.GetPageAsync(domain, slug);
         return HttpResults.Ok(page?.Content ?? "")
             .AddHeader("Access-Control-Allow-Origin", "*");
+    }
+
+    private async Task<IHttpResult> GetBlogPosts(string domain, ILambdaContext context, string? tag, int page)
+    {
+        const int pageSize = 10;
+        var skip = (Math.Max(1, page) - 1) * pageSize;
+        var contentService = await _contentServiceFactory.GetContentService();
+        var posts = await contentService.GetBlogPostsAsync(domain, tag, skip, pageSize);
+        return HttpResults.Ok(JsonSerializer.Serialize(posts, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }))
+            .AddHeader("Access-Control-Allow-Origin", "*")
+            .AddHeader("Content-Type", "application/json");
+    }
+
+    private async Task<IHttpResult> GetBlogPost(string domain, string slug, ILambdaContext context)
+    {
+        var contentService = await _contentServiceFactory.GetContentService();
+        var post = await contentService.GetBlogPostAsync(domain, slug);
+        if (post == null)
+            return HttpResults.NotFound();
+        return HttpResults.Ok(JsonSerializer.Serialize(post, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }))
+            .AddHeader("Access-Control-Allow-Origin", "*")
+            .AddHeader("Content-Type", "application/json");
     }
 }

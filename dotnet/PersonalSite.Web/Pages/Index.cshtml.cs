@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using CT = PersonalSite.ContentModel;
 
 namespace PersonalSite.Web.Pages;
 
-public class IndexModel : PageModel
+public class IndexModel(CT.IContentService contentService) : PageBase(contentService)
 {
-    private readonly CT.IContentService _contentService;
+    [BindProperty(SupportsGet = true)]
+    public string? Slug { get; set; }
     
     [BindProperty]
     public CT.Page? HomePage { get; set; }
 
-    public IndexModel(CT.IContentService contentService)
+    protected override async Task<IActionResult> GetResultAsync()
     {
-        _contentService = contentService;
-    }
+        var slug = Slug ?? "home";
+        slug = "/" + slug.ToLower().TrimStart('/');
+        HomePage = await _contentService.GetPageAsync(Domain, slug);
+        if (HomePage == null)
+            return NotFound();
 
-    public async Task OnGetAsync()
-    {
-        HomePage = await _contentService.GetPageAsync("/home");
+        return Page();
     }
 }

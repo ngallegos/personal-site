@@ -1,8 +1,7 @@
-﻿@page
-@using PersonalSite.ContentModel
+﻿@page "/{slug?}"
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = Model.Slug ?? "Home";
 }
 
 <div>

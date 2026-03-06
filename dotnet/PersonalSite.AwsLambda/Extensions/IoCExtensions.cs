@@ -55,7 +55,10 @@ public class ContentServiceFactory : IContentServiceFactory
 
     public async Task<IContentService> GetContentService()
     {
-        var gettingContentfulSecret = _secretsManagerClient.GetSecretAsync(_configuration["AWS:SecretNames:Contentful"]);
+        var secretName = _configuration["AWS:SecretNames:Contentful"];
+        if (string.IsNullOrWhiteSpace(secretName))
+            throw new Exception("Contentful secret name not configured");
+        var gettingContentfulSecret = _secretsManagerClient.GetSecretAsync(secretName);
         var fullConfigBuilder = new ConfigurationBuilder();
         var contentfulOptionsDictionary = _configuration.GetSection("ContentfulOptions").GetChildren()
             .ToDictionary(x => $"ContentfulOptions:{x.Key}", x => x.Value);
