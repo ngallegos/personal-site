@@ -4,6 +4,7 @@ import { useContext, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import hljs from 'highlight.js';
+import 'highlight.js/styles/obsidian.css';
 import { MetaContext } from '../../context/metaContext';
 import { getBlogPost } from '../../util/contentUtil';
 import { Post } from '../../model/post';
@@ -14,7 +15,7 @@ function BlogPost() {
 
     useEffect(() => {
         hljs.highlightAll();
-    });
+    }, [post.content]);
 
     const pageTitle = `${post.title} | ${meta.siteName}`;
 
