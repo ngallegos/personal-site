@@ -30,6 +30,7 @@ public class Post
     public string? Content { get; set; }
     
     [IgnoreContentField]
+    [System.Text.Json.Serialization.JsonIgnore]
     public HtmlString? HtmlContent => Content?.ToHtmlString();
 
     [ContentField(Type = SystemFieldTypes.Array, Id = "tags", ItemsLinkType = SystemLinkTypes.Entry)]

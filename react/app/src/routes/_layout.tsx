@@ -1,5 +1,5 @@
-import { getSiteMetadata } from '../util/contentUtil';
-import { Link, Outlet, useLoaderData } from 'react-router-dom';
+import { getSiteMetadata, getBlogPosts } from '../util/contentUtil';
+import { Link, Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import { SiteMetaData } from '../model/sitemetadata';
 import './site.css';
 import ReactMarkdown from 'react-markdown';
@@ -7,12 +7,25 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import rehypeRaw from 'rehype-raw';
 import { MetaContext } from '../context/metaContext';
 
+interface LayoutLoaderData {
+  meta: SiteMetaData;
+  hasBlogPosts: boolean;
+}
 
 function Layout() {
-  const meta = useLoaderData() as SiteMetaData;
+  const { meta, hasBlogPosts } = useLoaderData() as LayoutLoaderData;
+  const location = useLocation();
+  const isOnBlogPage = location.pathname.startsWith('/blog');
+
   document.body.classList.add("dark-theme");
   document.body.classList.add("font-sans");
   document.body.classList.add("quicksand");
+
+  const navLinks = isOnBlogPage
+    ? [{ slug: '/', text: 'Home', external: null }, ...meta.navLinks]
+    : hasBlogPosts
+      ? [...meta.navLinks, { slug: '/blog', text: 'Blog', external: null }]
+      : meta.navLinks;
 
   return (
     <HelmetProvider>
@@ -28,7 +41,7 @@ function Layout() {
                 <div className="max-w-2xl md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
                     <p className="font-bold my-4 md:my-12">Things To See</p>
                     <ul className="flex flex-wrap justify-between flex-col">
-                      {meta.navLinks.map((link, index) => (
+                      {navLinks.map((link, index) => (
                         <li key={index}>
                           {!!link.external ? <a className="nav" href={link.slug} target="_blank" rel="noreferrer">{link.text}</a>
                           : <Link className="nav" to={link.slug}>{link.text}</Link>}
@@ -71,10 +84,13 @@ function Layout() {
   );
 }
 
-export async function loader({ params }: any){
-  const content = await getSiteMetadata();
-  if (!content) throw new Response("", { status: 404 });
-  return content;
+export async function loader({ params }: any): Promise<LayoutLoaderData> {
+  const [meta, posts] = await Promise.all([
+    getSiteMetadata(),
+    getBlogPosts(),
+  ]);
+  if (!meta) throw new Response("", { status: 404 });
+  return { meta, hasBlogPosts: posts.length > 0 };
 }
 
 export default Layout;
