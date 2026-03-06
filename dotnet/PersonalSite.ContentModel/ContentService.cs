@@ -6,8 +6,9 @@ namespace PersonalSite.ContentModel;
 
 public interface IContentService
 {
-    Task <Post?> GetBlogPostAsync(string domain, string slug);
-    Task <List<Post>> GetBlogPostsAsync(string domain, string? tag = null, int skip = 0, int limit = 10);
+    Task<Post?> GetBlogPostAsync(string domain, string slug);
+    Task<List<Post>> GetBlogPostsAsync(string domain, string? tag = null, int skip = 0, int limit = 10);
+    Task<List<Post>> GetRelatedPostsAsync(string domain, Post currentPost, int minPosts = 5);
     Task<SiteMetaData?> GetSiteMetaDataAsync(string domain);
     Task<Page?> GetPageAsync(string domain, string slug);
     Task<Resume?> GetResumeAsync(string domain);
@@ -49,18 +50,7 @@ public class ContentService(IContentfulClient contentful) : IContentService
         return posts.ToList();
     }
 
-    public virtual async Task<SiteMetaData?> GetPostMetaDataAsync(string domain, Post currentPost, int minRelatedPosts = 5)
-    {
-        var relatedTagIds = currentPost.Tags?.Select(x => x.Sys?.Id).ToList() ?? new List<string>();
-        var sortOrderBuilder = SortOrderBuilder<Post>
-            .New(x => x.Sticky, SortOrder.Reversed)
-            .ThenBy(x => x.Sys!.UpdatedAt, SortOrder.Reversed)
-            .ThenBy(x => x.Sys!.CreatedAt, SortOrder.Reversed);
-
-        throw new NotImplementedException();
-    }
-
-    private async Task<List<Post>> GetRelatedPostsAsync(string domain, Post currentPost, int minPosts = 5)
+    public virtual async Task<List<Post>> GetRelatedPostsAsync(string domain, Post currentPost, int minPosts = 5)
     {
         var posts = new List<Post>();
         var relatedTagIds = currentPost.Tags?.Select(x => x.Sys!.Id).ToList() ?? new List<string>();
@@ -93,18 +83,16 @@ public class ContentService(IContentfulClient contentful) : IContentService
         }
 
         if (posts.Count < minPosts)
-            posts.AddRange(await GetBlogPostsAsync(domain, null, posts.Count, minPosts - posts.Count));
-        
+        {
+            var fallback = (await GetBlogPostsAsync(domain, null, 0, minPosts + 1))
+                .Where(p => p.Slug != currentPost.Slug && posts.All(e => e.Slug != p.Slug))
+                .Take(minPosts - posts.Count);
+            posts.AddRange(fallback);
+        }
+
         return posts;
     }
 
-    private async Task<List<Post>> GetBlogPostsAsync(string domain, string tag = null, int minPosts = 5)
-    {
-        
-
-        throw new NotImplementedException();
-    }
-    
     public virtual async Task<SiteMetaData?> GetSiteMetaDataAsync(string domain)
     {
         var query = QueryBuilder<SiteMetaData>.New.FieldMatches(x => x.Domains, domain);

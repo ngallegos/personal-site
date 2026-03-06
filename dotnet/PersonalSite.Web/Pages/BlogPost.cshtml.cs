@@ -5,22 +5,24 @@ namespace PersonalSite.Web.Pages;
 
 public class BlogPostModel(CT.IContentService contentService) : BlogBase(contentService)
 {
-    private readonly CT.IContentService _contentService = contentService;
-    
+
     [BindProperty(SupportsGet = true)]
     public string? Slug { get; set; }
-    
+
     [BindProperty]
     public CT.Blog.Post? Post { get; set; }
 
+    [BindProperty]
+    public List<CT.Blog.Post> RelatedPosts { get; set; } = new();
+
     protected override async Task<IActionResult> GetResultAsync()
     {
-        var slug = Slug ?? "home";
-        slug = "/" + slug.ToLower().TrimStart('/');
+        var slug = (Slug ?? string.Empty).ToLower();
         Post = await _contentService.GetBlogPostAsync(Domain, slug);
         if (Post == null)
             return NotFound();
 
+        RelatedPosts = await _contentService.GetRelatedPostsAsync(Domain, Post);
         return Page();
     }
 }

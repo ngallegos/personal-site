@@ -30,6 +30,15 @@ public class CachedContentService(
         }) ?? new List<Post>();
     }
 
+    public override async Task<List<Post>> GetRelatedPostsAsync(string domain, Post currentPost, int minPosts = 5)
+    {
+        return await cache.GetOrCreateAsync($"relatedposts:{domain}/{currentPost.Slug}", async entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(_cacheDurationSeconds);
+            return await base.GetRelatedPostsAsync(domain, currentPost, minPosts);
+        }) ?? new List<Post>();
+    }
+
     public override async Task<SiteMetaData?> GetSiteMetaDataAsync(string domain)
     {
         return await cache.GetOrCreateAsync($"siteMetaData:{domain}", async entry =>

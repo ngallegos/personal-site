@@ -1,5 +1,8 @@
 ﻿@using PersonalSite.Web.Pages.Shared.Components.NavLinks
 @model PersonalSite.Web.Pages.PageBase
+@{
+    var isBlogPage = Model is PersonalSite.Web.Pages.BlogModel || Model is PersonalSite.Web.Pages.BlogPostModel;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +27,7 @@
         <div class="w-full md:w-1/3 md:pr-32 order-3 md:order-1">
             <div class="max-w-2xl md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
                 <p class="font-bold my-4 md:my-12">Things To See</p>
-                <vc:nav-links site-meta="@Model.MetaData" link-type="@NavLinksType.Nav" ul-class="flex flex-wrap justify-between flex-col" li-class="nav"></vc:nav-links>
+                <vc:nav-links site-meta="@Model.MetaData" link-type="@NavLinksType.Nav" is-blog-page="@isBlogPage" ul-class="flex flex-wrap justify-between flex-col" li-class="nav"></vc:nav-links>
             </div>
         </div>
         <div class="w-full md:w-2/3 order-1 md:order-2">

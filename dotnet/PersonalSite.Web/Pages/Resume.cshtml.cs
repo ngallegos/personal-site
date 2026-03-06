@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using PersonalSite.ContentModel;
-using PersonalSite.Web.Extensions;
 
 namespace PersonalSite.Web.Pages;
 
 public class ResumeModel(IContentService contentService) : PageBase(contentService)
 {
-    private readonly IContentService _contentService = contentService;
-    
     [BindProperty]
     public Resume? Resume { get; set; }
 

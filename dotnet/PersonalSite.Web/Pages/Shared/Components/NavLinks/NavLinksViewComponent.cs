@@ -13,19 +13,28 @@ public class NavLinksViewComponent : ViewComponent
         _contentService = contentService;
     }
     
-    public async Task<IViewComponentResult> InvokeAsync(SiteMetaData? siteMeta = null, NavLinksType? linkType = null, string ulClass = "", string liClass = "")
+    public async Task<IViewComponentResult> InvokeAsync(SiteMetaData? siteMeta = null, NavLinksType? linkType = null, string ulClass = "", string liClass = "", bool isBlogPage = false)
     {
         var model = new NavLinksViewModel { UlClass = ulClass, LiClass = liClass };
+        var domain = this.GetRequestDomain();
+
         if (siteMeta == null)
-        {
-            var domain = this.GetRequestDomain();
             siteMeta = await _contentService.GetSiteMetaDataAsync(domain);
-        }
 
         switch (linkType)
         {
             case NavLinksType.Nav:
                 model.Links = siteMeta?.NavLinks ?? new List<Link>();
+                if (isBlogPage)
+                {
+                    model.Links = model.Links.Prepend(new Link { Slug = "/", Text = "Home" }).ToList();
+                }
+                else
+                {
+                    var hasPosts = (await _contentService.GetBlogPostsAsync(domain, limit: 1)).Any();
+                    if (hasPosts)
+                        model.Links = model.Links.Prepend(new Link { Slug = "/blog", Text = "Blog" }).ToList();
+                }
                 break;
             case NavLinksType.Footer:
                 model.Links = siteMeta?.ContactLinks ?? new List<Link>();
@@ -34,6 +43,7 @@ public class NavLinksViewComponent : ViewComponent
                 model.Links = siteMeta?.NavLinks.Concat(siteMeta.ContactLinks).ToList() ?? new List<Link>();
                 break;
         }
+
         return View(model);
     }
 }

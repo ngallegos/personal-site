@@ -5,6 +5,52 @@
     ViewData["Title"] = "Blog";
 }
 
-<div>
-    The blog goes here
-</div>
+<h1>Blog</h1>
+
+@if (Model.Tag != null)
+{
+    <p>Filtered by: <strong>@Model.Tag</strong> &mdash; <a href="/blog">Clear filter</a></p>
+}
+
+@if (!Model.Posts.Any())
+{
+    <p>No posts found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var post in Model.Posts)
+        {
+            <li>
+                <a href="/blog/@post.Slug">@post.Title</a>
+                @if (post.Sys?.UpdatedAt != null)
+                {
+                    <span>&mdash; <time>@post.Sys.UpdatedAt.Value.ToString("MMMM d, yyyy")</time></span>
+                }
+                @if (post.Tags.Any())
+                {
+                    <span>
+                        @foreach (var tag in post.Tags)
+                        {
+                            <a href="/blog?tag=@tag.Name">@tag.Name</a>
+                        }
+                    </span>
+                }
+            </li>
+        }
+    </ul>
+
+    @if (Model.CurrentPage > 1 || Model.Posts.Count == 10)
+    {
+        <nav>
+            @if (Model.CurrentPage > 1)
+            {
+                <a href="/blog?page=@(Model.CurrentPage - 1)@(Model.Tag != null ? "&tag=" + Model.Tag : "")">Previous</a>
+            }
+            @if (Model.Posts.Count == 10)
+            {
+                <a href="/blog?page=@(Model.CurrentPage + 1)@(Model.Tag != null ? "&tag=" + Model.Tag : "")">Next</a>
+            }
+        </nav>
+    }
+}

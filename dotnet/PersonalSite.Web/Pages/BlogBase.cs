@@ -9,7 +9,6 @@ public abstract class BlogBase(IContentService contentService) : PageBase(conten
 {
     protected override async Task<SiteMetaData?> GetMetaDataAsync()
     {
-        // TODO - return blog specific metadata
         return await _contentService.GetSiteMetaDataAsync(Domain);
     }
 }
