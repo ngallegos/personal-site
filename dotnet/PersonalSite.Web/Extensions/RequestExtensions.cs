@@ -17,6 +17,6 @@ public static class RequestExtensions
     
     public static string GetDomain(this HttpRequest request)
     {
-        return request.Host.Value.Split(':')[0].ToLower();
+        return (request.Host.Value ?? string.Empty).Split(':')[0].ToLower();
     }
 }
