@@ -15,12 +15,12 @@ jobs:
       issues: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v40.3.2
+        uses: renovatebot/github-action@v40.3.6
         with:
           configurationFile: .github/renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
-          RENOVATE_AUTODISCOVER: true
+          RENOVATE_REPOSITORIES: ${{ github.repository }} 
