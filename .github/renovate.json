@@ -24,6 +24,13 @@
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true,
       "automergeType": "pr"
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "groupName": "Dockerfile dependencies",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "pr"
     }
   ],
   "labels": [
