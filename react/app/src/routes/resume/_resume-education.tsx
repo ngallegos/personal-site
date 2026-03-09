@@ -17,8 +17,8 @@ export default function ResumeEducation({resume}: {resume: Resume}){
                       </h2>
                       {                        
                         resume.education.map((edu, ix) => {
-                          var first = ix == 0;
-                          var last = ix == resume.education.length - 1;
+                          var first = ix === 0;
+                          var last = ix === resume.education.length - 1;
                           return (
                           <section key={ix} className={"break-inside-avoid" + (first ? " mt-2" : " mt-4") + (last ? " pb-4 mb-4" : " border-b-2")}>
                               <header>

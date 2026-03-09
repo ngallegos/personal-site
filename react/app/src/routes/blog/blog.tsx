@@ -14,7 +14,7 @@ interface BlogLoaderData {
 function Blog() {
     const { posts, tag, page } = useLoaderData() as BlogLoaderData;
     const meta = useContext(MetaContext);
-    const [, setSearchParams] = useSearchParams();
+    useSearchParams();
 
     const pageTitle = `Blog${tag ? ` — ${tag}` : ''} | ${meta.siteName}`;
 
