@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/config/">
+    <File Path="../.dockerignore" />
+    <File Path="../.gitignore" />
+    <File Path="../LICENSE" />
+    <File Path="Dockerfile" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/PersonalSite.AwsLambda.Tests/PersonalSite.AwsLambda.Tests.csproj" />
+  </Folder>
+  <Project Path="PersonalSite.AwsLambda/PersonalSite.AwsLambda.csproj" />
+  <Project Path="PersonalSite.ContentModel/PersonalSite.ContentModel.csproj" />
+  <Project Path="PersonalSite.Utilities/PersonalSite.Utilities.csproj" />
+  <Project Path="PersonalSite.Web/PersonalSite.Web.csproj" />
+</Solution>
