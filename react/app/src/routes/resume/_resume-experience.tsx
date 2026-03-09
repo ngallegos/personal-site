@@ -14,8 +14,7 @@ export default function ResumeExperience({resume}: {resume: Resume}){
                 {/* @foreach (var (exp, ix) in Model.Experience.Select((s, i) => (s, i))) */}
                 {
                     resume.experience.map((exp, ix) => {
-                        var first = ix == 0;
-                        var last = ix == resume.experience.length - 1;
+                        var last = ix === resume.experience.length - 1;
                         return (
                             <section key={ix} className={"mb-2" + (last ? " border-b-0" : " border-b-2") + " border-gray-300 break-inside-avoid"}>
                                 <header>
