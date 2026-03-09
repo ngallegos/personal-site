@@ -29,8 +29,8 @@ jobs:
       - name: Build
         run: yarn build
         env:
-          REACT_APP_API_GATEWAY_URL: https://placeholder.example.com
-          REACT_APP_CONTENT_DOMAIN: placeholder.example.com
+          VITE_API_GATEWAY_URL: https://placeholder.example.com
+          VITE_CONTENT_DOMAIN: placeholder.example.com
 
       # - name: Test
       #   run: yarn test --watchAll=false
