@@ -2,8 +2,8 @@ import { Resume } from '../model/resume';
 import { SiteMetaData } from '../model/sitemetadata';
 import { Post } from '../model/post';
 
-export const contentApiRoot = process.env.REACT_APP_API_GATEWAY_URL;
-export const contentDomain = process.env.REACT_APP_CONTENT_DOMAIN;
+export const contentApiRoot = import.meta.env.VITE_API_GATEWAY_URL;
+export const contentDomain = import.meta.env.VITE_CONTENT_DOMAIN;
 
 export async function getPageContent(slug: string): Promise<string> {
     slug = slug || "home";
