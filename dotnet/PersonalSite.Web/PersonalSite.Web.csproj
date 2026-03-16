@@ -35,7 +35,7 @@
         <Exec Command="npm run css:build"/>
     </Target> -->
     <ItemGroup>
-      <PackageReference Include="AWSSDK.SecretsManager" Version="4.0.4.8" />
+      <PackageReference Include="AWSSDK.SecretsManager" Version="4.0.4.9" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Extensions\" />
